@@ -1,6 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.text.NumberFormat;
+import java.text.ParseException;
 
+import javax.swing.text.MaskFormatter;
 /**
  * 
  * @author Nicolas Dionne
@@ -38,7 +41,7 @@ public class GUI_AjoutClient extends GUI {
 	       Font labelNoCBFont = new Font(null, -1, 16);
 	        if (labelNoCBFont != null) labelCB.setFont(labelNoCBFont);
 	        labelCB.setHorizontalAlignment(11);
-	        labelCB.setText("Nuémero carte Bancaire : ");
+	        labelCB.setText("Numéro carte Bancaire : ");
 	        GridBagConstraints gbc;
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
@@ -95,6 +98,7 @@ public class GUI_AjoutClient extends GUI {
 	        textFieldAdresse = new JTextField();
 	        Font textFieldAdresseFont = new Font(null, -1, 16);
 	        if (textFieldAdresseFont != null) textFieldAdresse.setFont(textFieldAdresseFont);
+	        textFieldAdresse.setColumns(25);
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
 	        gbc.gridy = 3;
@@ -124,7 +128,19 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.gridy = 4;
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelTel, gbc);
-	        formattedTextFieldTelDom = new JFormattedTextField();
+	        
+	        //Maque formatteur pour formater numéro de téléphone Domicile
+	        MaskFormatter masqueTelDom = null;
+	        try {
+	        	masqueTelDom = new MaskFormatter("(***) ***-**** Extension : *******");
+	        	masqueTelDom.setValidCharacters("1234567890 ");
+	        	masqueTelDom.setPlaceholderCharacter(' ');
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        } 
+	        
+	        //Field pour noTel Domicile
+	        formattedTextFieldTelDom = new JFormattedTextField(masqueTelDom);
 	        Font formattedTextFieldTelDomFont = new Font(null, -1, 16);
 	        if (formattedTextFieldTelDomFont != null) formattedTextFieldTelDom.setFont(formattedTextFieldTelDomFont);
 	        gbc = new GridBagConstraints();
@@ -134,7 +150,19 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(formattedTextFieldTelDom, gbc);
-	        formattedTextFieldTelMob = new JFormattedTextField();
+	        
+	        //Maque formatteur pour formater numéro de téléphone Mobile
+	        MaskFormatter masqueTelMob = null;
+	        try {
+	        	masqueTelMob = new MaskFormatter("(***) ***-****");
+	        	masqueTelMob.setValidCharacters("1234567890 ");
+	        	masqueTelMob.setPlaceholderCharacter(' ');
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	      
+	        //Field pour noTel Mobile
+	        formattedTextFieldTelMob = new JFormattedTextField(masqueTelMob);
 	        Font formattedTextFieldTelMobFont = new Font(null, -1, 16);
 	        if (formattedTextFieldTelMobFont != null) formattedTextFieldTelMob.setFont(formattedTextFieldTelMobFont);
 	        gbc = new GridBagConstraints();
@@ -144,7 +172,18 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(formattedTextFieldTelMob, gbc);
-	        formattedTextFieldNoPermis = new JFormattedTextField();
+	        
+	        
+	        //Maque formatteur pour formater les numéro de permis
+	        MaskFormatter masqueNoPemis = null;
+	        try {
+	        	masqueNoPemis = new MaskFormatter("*************************");
+	        	masqueNoPemis.setValidCharacters("1234567890 ");
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	        //Field pour noPermis
+	        formattedTextFieldNoPermis = new JFormattedTextField(masqueNoPemis);
 	        Font formattedTextFieldNoPermisFont = new Font(null, -1, 16);
 	        if (formattedTextFieldNoPermisFont != null) formattedTextFieldNoPermis.setFont(formattedTextFieldNoPermisFont);
 	        gbc = new GridBagConstraints();
@@ -154,6 +193,8 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(formattedTextFieldNoPermis, gbc);
+	        
+	        //LabelNo Permis
 	        final JLabel labelNoPermis = new JLabel();
 	        Font labelNoPermisFont = new Font(null, -1, 16);
 	        if (labelNoPermisFont != null) labelNoPermis.setFont(labelNoPermisFont);
@@ -164,6 +205,8 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.gridy = 7;
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelNoPermis, gbc);
+	        
+	        //Label no téléphone mobile
 	        final JLabel labelTelMob = new JLabel();
 	        Font labelTelMobFont = new Font(null, Font.ITALIC, 16);
 	        if (labelTelMobFont != null) labelTelMob.setFont(labelTelMobFont);
@@ -173,6 +216,8 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.gridy = 6;
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelTelMob, gbc);
+	        
+	        //Label no téléphone Domicile
 	        final JLabel labelTelDom = new JLabel();
 	        Font labelTelDomFont = new Font(null, Font.ITALIC, 16);
 	        if (labelTelDomFont != null) labelTelDom.setFont(labelTelDomFont);
@@ -182,6 +227,8 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.gridy = 5;
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelTelDom, gbc);
+	        
+	        //Field pour no Carte de bancaire
 	        passwordFieldCB = new JPasswordField();
 	        passwordFieldCB.setColumns(9);
 	        Font passwordFieldCBFont = new Font(null, -1, 16);
