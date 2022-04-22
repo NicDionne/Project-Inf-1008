@@ -5,7 +5,7 @@ import java.awt.*;
  * 
  * @author Nicolas Dionne
  *
- *Menu principale du registre permettant la redirection vers des fonctionnalité
+ *Menu principale du registre permettant la redirection vers des fonctionnalité de d'autre menu
  */
 public class GUI_Menu   {
 	private JPanel panel1;
@@ -36,6 +36,7 @@ public class GUI_Menu   {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(spacer1, gbc);
         retirerClientButton = new JButton();
+        retirerClientButton.addActionListener(e -> retirerClientButtonClick());
         retirerClientButton.setText("Retirer Client");
         retirerClientButton.setToolTipText("Cliquer afin de retirer un client du système");
         gbc = new GridBagConstraints();
@@ -46,6 +47,7 @@ public class GUI_Menu   {
         ouvrirDossierClientButton = new JButton();
         ouvrirDossierClientButton.setText("Ouvrir Dossier Client");
         ouvrirDossierClientButton.setToolTipText("Cliquer afin d'ouvrir le dossier d'un client");
+        ouvrirDossierClientButton.addActionListener(e -> ouvrirDossierClientButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 5;
         gbc.gridy = 1;
@@ -54,6 +56,7 @@ public class GUI_Menu   {
         deconnexionButton = new JButton();
         deconnexionButton.setText("Deconnexion");
         deconnexionButton.setToolTipText("Cliquer afin de vous déconnecter");
+        deconnexionButton.addActionListener(e -> deconnexionButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 7;
         gbc.gridy = 6;
@@ -62,6 +65,7 @@ public class GUI_Menu   {
         ajouterClientButton = new JButton();
         ajouterClientButton.setText("Ajouter Client");
         ajouterClientButton.setToolTipText("Cliquer afin d'ajouter un client dans le système");
+        ajouterClientButton.addActionListener(e -> ajouterClientButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 6;
         gbc.gridy = 2;
@@ -70,6 +74,7 @@ public class GUI_Menu   {
         modifierDossierClientButton = new JButton();
         modifierDossierClientButton.setText("Modifier Dossier Client");
         modifierDossierClientButton.setToolTipText("Cliquer afin de modifier un dossier client dans le système");
+        modifierDossierClientButton.addActionListener(e -> modifierDossierClientButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 6;
         gbc.gridy = 1;
@@ -78,6 +83,7 @@ public class GUI_Menu   {
         modifierUneRéservationButton = new JButton();
         modifierUneRéservationButton.setText("Modifier une réservation");
         modifierUneRéservationButton.setToolTipText("Cliquer afin de modifier une réservation déjà effectuer");
+        modifierUneRéservationButton.addActionListener(e -> modifierUneRéservationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -86,6 +92,7 @@ public class GUI_Menu   {
         ajouterRéservationButton = new JButton();
         ajouterRéservationButton.setText("Ajouter réservation");
         ajouterRéservationButton.setToolTipText("Cliquer afin d'ajouter une réservation");
+        ajouterRéservationButton.addActionListener(e -> ajouterRéservationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 2;
@@ -96,6 +103,7 @@ public class GUI_Menu   {
         retirerUneRéservationButton.setHideActionText(false);
         retirerUneRéservationButton.setText("Retirer Une réservation");
         retirerUneRéservationButton.setToolTipText("Cliquer afin de retirer une réservation");
+        retirerUneRéservationButton.addActionListener(e -> retirerUneRéservationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 3;
@@ -104,6 +112,7 @@ public class GUI_Menu   {
         ajouterLocationButton = new JButton();
         ajouterLocationButton.setText("Ajouter Location");
         ajouterLocationButton.setToolTipText("Cliquer afin d'ajouter une location");
+        ajouterLocationButton.addActionListener(e -> ajouterLocationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 2;
@@ -112,6 +121,7 @@ public class GUI_Menu   {
         annulerUneRéservationButton = new JButton();
         annulerUneRéservationButton.setText("Annuler une réservation");
         annulerUneRéservationButton.setToolTipText("Cliquer afin d'annuler une Location en cours");
+        annulerUneRéservationButton.addActionListener(e -> annulerUneRéservationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 1;
@@ -120,6 +130,7 @@ public class GUI_Menu   {
         réstituerLocationButton = new JButton();
         réstituerLocationButton.setText("Réstituer location");
         réstituerLocationButton.setToolTipText("Cliquer afin de faire le retour d'un véhicule");
+        réstituerLocationButton.addActionListener(e -> réstituerLocationButtonClick());
         gbc = new GridBagConstraints();
         gbc.gridx = 3;
         gbc.gridy = 3;
@@ -140,6 +151,7 @@ public class GUI_Menu   {
         consulterLaListeDesButton = new JButton();
         consulterLaListeDesButton.setText("Consulter la liste des véhicule");
         consulterLaListeDesButton.setToolTipText("Cliquer afin de consulter la liste des véhicules en inventaires");
+        consulterLaListeDesButton.addActionListener(e -> consulterLaListeDesButton());
         gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 5;
@@ -153,12 +165,47 @@ public class GUI_Menu   {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(spacer4, gbc);
 	        
-	        //JFrame initialisation
-	        frame.setContentPane(panel1);
-	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        frame.pack();
-	        frame.setVisible(true);
+	     //JFrame initialisation
+	     frame.setContentPane(panel1);
+	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     frame.pack();
+	     frame.setVisible(true);
 	}
-	
-	
+
+	public void retirerClientButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void ouvrirDossierClientButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void deconnexionButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void ajouterClientButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void modifierDossierClientButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void modifierUneRéservationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void ajouterRéservationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void retirerUneRéservationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void ajouterLocationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void réstituerLocationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void consulterLaListeDesButton(){
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
+	public void annulerUneRéservationButtonClick() {
+		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+	}
 }
