@@ -188,41 +188,41 @@ public class GUI_Menu   {
 	     frame.setVisible(true);
 	}
 
-	public void retirerClientButtonClick() {
+	private void retirerClientButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void ouvrirDossierClientButtonClick() {
+	private void ouvrirDossierClientButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void deconnexionButtonClick() {
+	private void deconnexionButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void ajouterClientButtonClick() {
+	private void ajouterClientButtonClick() {
 		frame.setVisible(false);
 		GestionnaireClient.DemandeCreationDossierClient();
 	}
-	public void modifierDossierClientButtonClick() {
+	private void modifierDossierClientButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void modifierUneRéservationButtonClick() {
+	private void modifierUneRéservationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void ajouterRéservationButtonClick() {
+	private void ajouterRéservationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void retirerUneRéservationButtonClick() {
+	private void retirerUneRéservationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void ajouterLocationButtonClick() {
+	private void ajouterLocationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void réstituerLocationButtonClick() {
+	private void réstituerLocationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void consulterLaListeDesButton(){
+	private void consulterLaListeDesButton(){
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
-	public void annulerUneRéservationButtonClick() {
+	private void annulerUneRéservationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
 }
