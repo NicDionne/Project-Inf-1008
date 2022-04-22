@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import javax.swing.UIManager.*;
 /**
  * 
  * @author Nicolas Dionne
@@ -28,6 +29,17 @@ public class GUI_Menu   {
 	JFrame frame = new JFrame("Menu principale");
 	public GUI_Menu()
 	{ 	
+		//Pour le style réf : https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/nimbus.html
+		try {
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            break;
+		        }
+		    }
+		} catch (Exception e) {
+		    // If Nimbus is not available, you can set the GUI to another look and feel.
+		}
 		panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setEnabled(true);
@@ -186,7 +198,8 @@ public class GUI_Menu   {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
 	public void ajouterClientButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+		frame.setVisible(false);
+		GestionnaireClient.DemandeCreationDossierClient();
 	}
 	public void modifierDossierClientButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
