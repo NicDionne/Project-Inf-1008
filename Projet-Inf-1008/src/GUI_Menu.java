@@ -5,7 +5,11 @@ import java.awt.*;
  * 
  * @author Nicolas Dionne
  *
- *Menu principale du registre permettant la redirection vers des fonctionnalité de d'autre menu
+ *Menu principale du registre utilisé grandement par le préposé. 
+ *Ce menu permet d'afficher les options principales disponibles à lui.
+ *Lorsque le gestionnaire décide une option ce menu le redirige vers le bon gestionnaire de cas d'utilisation.
+ *
+ *Fait avec l'aide de IntelliJ IDEA
  */
 public class GUI_Menu   {
 	private JPanel panel1;
