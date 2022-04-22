@@ -12,7 +12,7 @@ import javax.swing.UIManager.*;
  *
  *Fait avec l'aide de IntelliJ IDEA
  */
-public class GUI_Menu   {
+public class GUI_Menu  extends GUI {
 	private JPanel panel1;
 	private JButton annulerUneRéservationButton;
 	private JButton ouvrirDossierClientButton;
@@ -26,9 +26,13 @@ public class GUI_Menu   {
 	private JButton retirerUneRéservationButton;
     private JButton ajouterLocationButton;
 	private JButton consulterLaListeDesButton;
-	JFrame frame = new JFrame("Menu principale");
+	
 	public GUI_Menu()
 	{ 	
+		frame = new JFrame("Menu principale");
+		//Set le menu supérieur
+		this.upperMenu = this;
+		
 		//Pour le style réf : https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/nimbus.html
 		try {
 		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -198,8 +202,7 @@ public class GUI_Menu   {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void ajouterClientButtonClick() {
-		frame.setVisible(false);
-		GestionnaireClient.DemandeCreationDossierClient();
+		Registre.demandeCreationDossierClient(this);
 	}
 	private void modifierDossierClientButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);

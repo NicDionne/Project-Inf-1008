@@ -1,4 +1,4 @@
 
-public class GUI_AjoutLocation {
+public class GUI_AjoutLocation extends GUI {
 
 }

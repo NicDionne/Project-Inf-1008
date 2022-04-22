@@ -10,8 +10,7 @@ import java.awt.*;
  * 
  *Fait avec l'aide de IntelliJ IDEA
  */
-public class GUI_AjoutClient {
-	JFrame frame = new JFrame("Formulaire ajout client");
+public class GUI_AjoutClient extends GUI { 
 	final JPanel panel1 = new JPanel();
 	 private JTextField textFieldNom;
 	   private JTextField textFieldPrenom;
@@ -22,8 +21,12 @@ public class GUI_AjoutClient {
 	    private JPasswordField passwordFieldCB;
 	    private JButton confirmerAjoutButton;
 	    private JButton annulerButton;
-	public GUI_AjoutClient()
+	    
+	public GUI_AjoutClient(GUI upperMenu)
 	{ 	
+		//Initialisation des variables 
+		 frame = new JFrame("Formulaire ajout client");
+		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
 	     frame.setContentPane(panel1);
@@ -32,8 +35,8 @@ public class GUI_AjoutClient {
 	     frame.setVisible(true);
 	        panel1.setLayout(new GridBagLayout());
 	        final JLabel labelCB = new JLabel();
-	      //  Font label1Font = this.$$$getFont$$$(null, -1, 16, label1.getFont());
-	      //  if (label1Font != null) label1.setFont(label1Font);
+	       Font labelNoCBFont = new Font(null, -1, 16);
+	        if (labelNoCBFont != null) labelCB.setFont(labelNoCBFont);
 	        labelCB.setHorizontalAlignment(11);
 	        labelCB.setText("Nuémero carte Bancaire : ");
 	        GridBagConstraints gbc;
@@ -237,12 +240,22 @@ public class GUI_AjoutClient {
 		     frame.pack();
 		     frame.setVisible(true);
 	    }
+	/**
+	 * 
+	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer ajout"
+	 */
 		private void confirmerAjoutButtonClick()
 		{
-			GestionnaireClient.CreationClient(textFieldNom.getText(), textFieldPrenom.getText(), textFieldAdresse.getText(),formattedTextFieldTelDom.getValue(),
+			Registre.creationClient(this,textFieldNom.getText(), textFieldPrenom.getText(), textFieldAdresse.getText(),formattedTextFieldTelDom.getValue(),
 					formattedTextFieldTelMob.getValue(), formattedTextFieldNoPermis.getValue(),passwordFieldCB.getPassword());
 		}
+		/**
+		 * 
+		 * Event se produisant lorsqu'on presse sur le bouton : "Annuler"
+		 */
 		private void annulerButtonClick() {
-			GestionnaireClient.annulerCreationClient();
+			Registre.annulerCreationClient();
 		}
+		
+		
 }
