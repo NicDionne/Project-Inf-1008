@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public class DAOClient implements DAO<Client> {
 
+	
 	//Nom du fichier utiliser
 	private static final String NOMFICHIER = "DBClient.csv";
 	public DAOClient()
@@ -32,6 +33,7 @@ public class DAOClient implements DAO<Client> {
 	{
 		
 	}
+	
 	
 	/**
 	 * @author Nicolas Dionne
@@ -58,6 +60,7 @@ public class DAOClient implements DAO<Client> {
 	private String formatCSVClient(Client client)
 	{
 		String clientFormater = "";
+		clientFormater += client.getIDClient() + ",";
 		clientFormater += client.getNom() + ",";
 		clientFormater += client.getPrenom()+ ",";
 		clientFormater += client.getAdresse()+ ",";
