@@ -1,10 +1,6 @@
 
 public class GestionnaireLocation {
-	/**
- * 
- * @author Nicolas Dionne
- *
- */
+
 	public static void DebuterLocation()
 	{
 		

@@ -293,8 +293,8 @@ public class GUI_AjoutClient extends GUI {
 	 */
 		private void confirmerAjoutButtonClick()
 		{
-			Registre.creationClient(this,textFieldNom.getText(), textFieldPrenom.getText(), textFieldAdresse.getText(),formattedTextFieldTelDom.getValue(),
-					formattedTextFieldTelMob.getValue(), formattedTextFieldNoPermis.getValue(),passwordFieldCB.getPassword());
+			Registre.creationClient(this,textFieldNom.getText(), textFieldPrenom.getText(), textFieldAdresse.getText(),formattedTextFieldTelDom.getText(),
+					formattedTextFieldTelMob.getText(), formattedTextFieldNoPermis.getText(),passwordFieldCB.getText());
 		}
 		/**
 		 * 
