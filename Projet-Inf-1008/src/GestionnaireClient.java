@@ -1,7 +1,7 @@
 
 
 public class GestionnaireClient {
-
+ 
 	private static DAOClient daoClient = new DAOClient();
 	/**@author Nicolas Dionne
 	 * 

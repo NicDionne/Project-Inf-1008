@@ -8,14 +8,16 @@ import java.io.IOException;
 
 public class DAOClient implements DAO<Client> {
 
-	
 	//Nom du fichier utiliser
 	private static final String NOMFICHIER = "DBClient.csv";
+	
 	public DAOClient()
 	{
 		
 	}
 	/**
+	 * Methode ayant pour but de sauvegarder dans la base de donner les informations sur un client
+	 * 
 	 * @author Nicolas Dionne
 	 * 
 	 * @param client : client que l'on souhait enregistrer
@@ -25,8 +27,19 @@ public class DAOClient implements DAO<Client> {
 		csvWrite(client);
 	}
 	
+	
+	/**Methode ayant pour but d'aller chercher dans la base de donner le(s) client(s) 
+	 * ayant le numero d'identifiant indiquer en argument.
+	 * @author Nicolas Dionne
+	 * 
+	 * @param id : int ; Identifiant unique du client
+	 * @return ArrayList<Client> : Liste de tout les client possedent l'identifiant inscrit
+	 */
 	public  ArrayList<Client> get(int id) {
-		return null;
+		ArrayList<Client> listClient = new ArrayList<Client>();
+		
+		
+		return listClient;
 	} 
 	
 	public  void delete(Client client)

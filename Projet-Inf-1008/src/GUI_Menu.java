@@ -3,7 +3,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import javax.swing.UIManager.*;
 /**
- * 
+ *  
  * @author Nicolas Dionne
  *
  *Menu principale du registre utilisé grandement par le préposé. 

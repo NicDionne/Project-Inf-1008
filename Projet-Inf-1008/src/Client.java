@@ -62,7 +62,7 @@ public class Client {
 	
 
 	public int getIDClient()
-	{
+	{ 
 		return idClient;
 	}
 	public String getNom()

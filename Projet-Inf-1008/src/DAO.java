@@ -2,7 +2,7 @@ import java.util.ArrayList;
 /**
  * 
  * @author Nicolas Dionne
- *
+ * 
  *Interface fesant le lien entre nos classe du domaine et nos base de donnees
  * par l'entremise de façade. Nous utilisons des objet d'accès de données. 
  * 
