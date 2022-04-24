@@ -31,7 +31,4 @@ public class Registre {
 		gui.toUpperMenu();
 	}
 
-	public static void annulerCreationClient() {
-
-	}
 }

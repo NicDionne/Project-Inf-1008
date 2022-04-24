@@ -301,7 +301,7 @@ public class GUI_AjoutClient extends GUI {
 		 * Event se produisant lorsqu'on presse sur le bouton : "Annuler"
 		 */
 		private void annulerButtonClick() {
-			Registre.annulerCreationClient();
+			this.toUpperMenu();
 		}
 		
 		
