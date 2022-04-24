@@ -1,6 +1,6 @@
 
 public class Client {
-	private static int compteurClient =0;
+	private static int compteurClient =0; 
 	private String nom;
 	private String prenom;
 	private String adresse;
@@ -33,7 +33,17 @@ public class Client {
 		this.noPermis = noPermis;
 		this.noCarteBancaire = noCarteBancaire;
 		//Temporaire
-		this.idClient = compteurClient;
+		this.idClient = generateIDClient();
+	}
+	/**
+	 * @author Nicolas Dionne
+	 * 
+	 * Constructeur de la classe client 
+
+	 */
+	public Client()
+	{
+		
 	}
 	/**TEMPO****
 	 * 
@@ -44,7 +54,9 @@ public class Client {
 	 */
 	public int generateIDClient()
 	{
+		compteurClient++;
 		return compteurClient;
+		
 	}
 	
 	/**
@@ -58,9 +70,8 @@ public class Client {
 	noTelDom + " " + noTelMob + " " + noPermis + " " + noCarteBancaire;
 	}
 	
-	//Accesseur de client, ND
 	
-
+	//Accesseur de client, ND
 	public int getIDClient()
 	{ 
 		return idClient;
@@ -95,5 +106,39 @@ public class Client {
 		return noCarteBancaire;
 	}
 	
+	//Setter
+	public void setIDClient(int idClient)
+	{ 
+		this.idClient = idClient;
+	}
+	public void setNom(String nom)
+	{
+		this.nom = nom;
+	}
+	
+	public void setPrenom(String prenom)
+	{
+		this.prenom = prenom;
+	}
+	public void setAdresse(String adresse)
+	{
+		this.adresse = adresse;
+	}
+	public void setNoTelDom(String noTelDom)
+	{
+		this.noTelDom = noTelDom;
+	}
+	public void setNoTelMob(String noTelMob)
+	{
+		this.noTelMob = noTelMob;
+	}
+	public void setNoPermis(String noPermis)
+	{
+		this.noPermis = noPermis;
+	}
+	public void setNoCarteBancaire(String noCarteBancaire)
+	{
+		this.noCarteBancaire = noCarteBancaire;
+	}
 	
 }

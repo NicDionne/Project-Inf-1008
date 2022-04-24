@@ -1,16 +1,15 @@
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;  
 
 public class DAOClient implements DAO<Client> {
 
 	//Nom du fichier utiliser
 	private static final String NOMFICHIER = "DBClient.csv";
-	
+	private static final String SEPARATOR = ",";
 	public DAOClient()
 	{
 		
@@ -28,18 +27,8 @@ public class DAOClient implements DAO<Client> {
 	}
 	
 	
-	/**Methode ayant pour but d'aller chercher dans la base de donner le(s) client(s) 
-	 * ayant le numero d'identifiant indiquer en argument.
-	 * @author Nicolas Dionne
-	 * 
-	 * @param id : int ; Identifiant unique du client
-	 * @return ArrayList<Client> : Liste de tout les client possedent l'identifiant inscrit
-	 */
 	public  ArrayList<Client> get(int id) {
-		ArrayList<Client> listClient = new ArrayList<Client>();
-		
-		
-		return listClient;
+		return null;
 	} 
 	
 	public  void delete(Client client)
@@ -73,15 +62,35 @@ public class DAOClient implements DAO<Client> {
 	private String formatCSVClient(Client client)
 	{
 		String clientFormater = "";
-		clientFormater += client.getIDClient() + ",";
-		clientFormater += client.getNom() + ",";
-		clientFormater += client.getPrenom()+ ",";
-		clientFormater += client.getAdresse()+ ",";
-		clientFormater += client.getNoTelDom()+ ",";
-		clientFormater += client.getNoTelMob()+ ",";
-		clientFormater += client.getNoPermis()+ ",";
+		clientFormater += client.getIDClient() + SEPARATOR;
+		clientFormater += client.getNom() + SEPARATOR;
+		clientFormater += client.getPrenom()+ SEPARATOR;
+		clientFormater += client.getAdresse()+ SEPARATOR;
+		clientFormater += client.getNoTelDom()+ SEPARATOR;
+		clientFormater += client.getNoTelMob()+ SEPARATOR;
+		clientFormater += client.getNoPermis()+ SEPARATOR;
 		clientFormater += client.getNoCarteBancaire() +"\n";
 		return clientFormater;
-		
 	}
+	
+	/**@author Nicolas Dionne
+	 * 
+	 * @param client : String forme formater en String pour la BD Client du Client
+	 * @return Client : Le client reformter dans sa forme client
+	 */
+	private Client formatCSVToClient(String stringClient)
+	{
+		Client client = new Client();
+		String[] infoClient = stringClient.split(SEPARATOR);
+		client.setIDClient(Integer.parseInt(infoClient[0]));
+		client.setNom(infoClient[1]);
+		client.setPrenom(infoClient[2]);
+		client.setAdresse(infoClient[3]);
+		client.setNoTelDom(infoClient[4]);
+		client.setNoTelMob(infoClient[5]);
+		client.setNoPermis(infoClient[6]);
+		client.setNoCarteBancaire(infoClient[7]);
+		return client;
+	}
+	
 }
