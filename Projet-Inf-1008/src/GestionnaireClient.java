@@ -28,4 +28,15 @@ public class GestionnaireClient {
 	{
 		
 	}
+
+	/** Méthode getClient ayant pour but de récupérer le dossier client.
+	 * @author Quentin Tambone
+	 * @param ID_Client : un identifiant client
+	 * @return
+	 */
+	public static Client getClient(int ID_Client){
+		// comment faire pour récupérer un client ici avec son identifiant ? il lui faut un ID_client
+		return null;
+	}
+
 }
