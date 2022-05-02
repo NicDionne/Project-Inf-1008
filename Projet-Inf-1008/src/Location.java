@@ -1,3 +1,4 @@
+/** @author Kamil MAZAN **/
 import java.util.Date;
 import java.util.Random;
 

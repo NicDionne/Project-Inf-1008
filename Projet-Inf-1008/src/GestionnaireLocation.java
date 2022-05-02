@@ -1,12 +1,19 @@
+/** @author Kamil MAZAN **/
 import java.sql.Date;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;  
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+/** représente une Location **/
 public class GestionnaireLocation {
 	 ArrayList<Location> listeLocation ;
 	
+	 /** Constructeur **/
+	  public GestionnaireLocation(){
+	        listeLocation = new ArrayList<>() ;
+	    }
+	 
 	public static void DebuterLocation()
 	{
 		
@@ -23,6 +30,13 @@ public class GestionnaireLocation {
 	{
 		
 	}
+	
+	/** méthode Restitution d'un vehicule 
+     * @param numLoc : un numéro de Location
+     * @param DateRetour : la date du retour du vehicule
+     * @param nbKm :Le nombre de Km sur le compteur lors de la restitution
+     * @param SommeDegats : La somme a deduire sur la garentie a cause des degats
+     */
 	
 	public void Restitution(int NumLoc,Date DateRetour,int nbKm,int SommeDegats) {
 		int Somme=200; 
