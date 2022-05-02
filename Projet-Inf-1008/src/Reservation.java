@@ -4,7 +4,7 @@ import java.util.Random;
 import java.text.DateFormat;
 
 /** représente une réservation **/
-public class Reservation {
+public class Reservation extends GestionnaireReservation {
     private Integer ID_client ;
     private Integer numResa ;
     private String categorie ;
@@ -71,5 +71,7 @@ public class Reservation {
         return "Numéro de Réservation : " + numResa + "\n" + "Catégorie du véhicule : " + categorie + "\n"
                 + "Date début : " + DateFormat.getInstance().format(dateDebut) + "\n" + "Date fin : " + DateFormat.getInstance().format(dateFin);
     }
+    
+   
 
 }

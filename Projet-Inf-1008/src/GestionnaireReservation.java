@@ -28,4 +28,22 @@ public class GestionnaireReservation {
         }
         return null ;
     }
+    
+    /** méthode AnnulerReservation annule une réservation
+     * @param numResa : un numéro de réservation
+     */
+    
+    public void AnnulerReservation(int numResa) {
+    	  for(Reservation r : listeReservation){
+              if(r.getNumResa().equals(numResa)){
+            	//RemboursementReservation(r); // Cas 10 = Remboursement de la reservation
+            	  r= null;
+            	  System.out.println("Annulation de reservation reussi");
+              }
+              else System.out.println("Reservation non trouvé");
+          }
+    }
+    
+    
+    
 }
