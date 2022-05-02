@@ -1,6 +1,9 @@
- 
-public class GestionnaireLocation {
+import java.sql.Date;
+import java.util.ArrayList;
 
+public class GestionnaireLocation {
+	 ArrayList<Location> listeLocation ;
+	
 	public static void DebuterLocation()
 	{
 		
@@ -15,6 +18,10 @@ public class GestionnaireLocation {
 	}
 	public static void ConfirmationLocation()
 	{
+		
+	}
+	
+	public void Restitution(int NumLoc,Date DateRetour,int nbKm,int SommeDegats) {
 		
 	}
 }
