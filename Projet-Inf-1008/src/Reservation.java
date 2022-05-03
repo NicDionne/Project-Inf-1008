@@ -73,5 +73,40 @@ public class Reservation extends GestionnaireReservation {
     }
     
    
-
+    //Accesseur 
+    /**@author Nicolas Dionne
+     * 
+     * getter pour la categorie vehicule 
+     * @return String : Categorie du vehicule en question
+     */
+    public String getCategorie()
+    {
+    	return categorie;
+    }
+    /**@author Nicolas Dionne
+     * 
+     * getter pour la date de debut de reservation
+     * @return Date : date de debut prevue de reservation
+     */
+    public Date getDateDebut()
+    {
+    	return dateDebut;
+    }
+    /**@author Nicolas Dionne
+     * 
+     * getter pour la date de fin de reservation
+     * @return Date : date de fin prevue de reservation
+     */
+    public Date getDateFin()
+    {
+    	return dateFin;
+    }
+    
+    /**@author Nicolas Dionne
+     * 
+     * @return int: identifiant du client correspondant a la reservation
+     */
+    public int getID_client(){
+        return ID_client ;
+    }
 }

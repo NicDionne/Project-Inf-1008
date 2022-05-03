@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;  
 
-public class DAOClient implements DAO<Client> {
+public class DAOClient  {
 
 	//Nom du fichier utiliser
 	private static final String NOMFICHIER = "DBClient.csv";
