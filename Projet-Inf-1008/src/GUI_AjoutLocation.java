@@ -74,7 +74,6 @@ public class GUI_AjoutLocation extends GUI {
     	ArrayList<Vehicule> listVehic = new ArrayList<Vehicule>();
     	listVehic.add(vehc2);
     	listVehic.add(vehc1);
-    	
     	String[] tab = new String[listVehic.size()];
     	for (int i = 0; i < listVehic.size();i++) {
     		tab[i] = listVehic.get(i).getCategorie() + " " + listVehic.get(i).getKilometrage();
