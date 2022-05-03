@@ -28,6 +28,21 @@ public class GUI {
 	/**
 	 * @author Nicolas Dionne
 	 * 
+	 * Methode permettant de saisir une entrer de la part de l'utilisateur, ce dernier bloque l'utilisateur
+	 * tant qu'il n'aura pas repondu ou quitter
+	 * 
+	 * @param message : String correspondant au message que l'on veut envoyer
+	 * @param titre : String du titre de la boite message
+	 * @return : Int Entrer de la part de l'utilisateur, null si l'utilisateur annule
+	 */
+	public int inputBoxInt(String message, String titre)
+	{
+		return Integer.parseInt(JOptionPane.showInputDialog(null,message,titre,JOptionPane.INFORMATION_MESSAGE));
+	}
+	
+	/**
+	 * @author Nicolas Dionne
+	 * 
 	 * Methode permettant de caché l'interface utilisateur.
 	 */
 	public void hide()

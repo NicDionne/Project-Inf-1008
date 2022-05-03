@@ -1,18 +1,24 @@
 import java.util.ArrayList;
 
 public class RegistreLocation {
-	private Location location;
+	private static Location location;
 	/**
 	 * @author Nicolas Dionne
 	 * 
 	 * Commence une location
 	 */
-	public void debuterLocation()
+	public static void debuterLocation(GUI upperMenu)
 	{
-		this.location = new Location();
+		//On crée une location
+		location = new Location();
+		
+		upperMenu.hide();
+		//Interface utilisateur traitant l'ajout d'un véhicule
+		GUI_AjoutLocation gui = new GUI_AjoutLocation(upperMenu);
+		
 	}
 	
-	public ArrayList<Vehicule> SaisiNoReservation(int noReservation)
+	public static ArrayList<Vehicule> SaisiNoReservation(int noReservation)
 	{
 		GestionnaireReservation gestionnaire = new GestionnaireReservation();
 		Reservation res = gestionnaire.getReservation(noReservation);
@@ -22,11 +28,11 @@ public class RegistreLocation {
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
 	}
-	public String SelectionVehicule(Vehicule vehicSelect) {
+	public static String SelectionVehicule(Vehicule vehicSelect) {
 		location.setVehicule(vehicSelect);
 		return location.getStringContrat();
 	}
-	public void confirmationLocation()
+	public static void confirmationLocation()
 	{
 		location.confirmationLocation();
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();

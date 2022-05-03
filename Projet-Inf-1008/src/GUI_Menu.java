@@ -217,7 +217,7 @@ public class GUI_Menu  extends GUI {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void ajouterLocationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+		RegistreLocation.debuterLocation(this);
 	}
 	private void réstituerLocationButtonClick() {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);

@@ -129,7 +129,7 @@ public class GUI_AjoutClient extends GUI {
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelTel, gbc);
 	        
-	        //Maque formatteur pour formater numéro de téléphone Domicile
+	        //Masque formatteur pour formater numéro de téléphone Domicile
 	        MaskFormatter masqueTelDom = null;
 	        try {
 	        	masqueTelDom = new MaskFormatter("(***) ***-**** Extension : *******");
