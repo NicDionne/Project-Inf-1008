@@ -38,14 +38,30 @@ public class Vehicule {
 		
 	}
 	
-	/** 
+	/** @author Nicolas Dionne
 	 * 
-	 * @param dateDebut
-	 * @param dateFin
+	 * Méthode permetant de retiré les dispo du véhicule entre deux dates inclusivement.
+	 * 
+	 * @param dateDebut : Date de début de l'intervalle maintenant indisponible
+	 * @param dateFin : Date de fin de l'intervalle maintenant indisponible
 	 */
 	public void retirerDispo(Date dateDebut,Date dateFin)
 	{
+		//On prend la date de début - la date d'ajourd'hui afin de calculer combien de charactère nous devons sauter
+		int coordonneDebut =  converterMilisecondsToDay(dateDebut.getTime() - new Date().getTime()  );
+				
+		//On calcule l'intervalle de jour nécessaire de disponibilité
+		int coordonneFin = coordonneDebut + converterMilisecondsToDay(dateFin.getTime() - dateDebut.getTime()  );
 		
+		//On transforme les dispo en tab de char
+		char[] dispoTab = dispo.toCharArray();
+		
+		//On itère sur les jour de dispo à changer du véhicule
+		for(int i = coordonneDebut; i < coordonneFin && i < dispo.length() ; i++)
+			dispoTab[i] = '0'; // On indique indisponible
+		
+		//On re-transforme en String
+		dispo = String.valueOf(dispoTab);
 	}
 	
 	//Accesseur
@@ -152,6 +168,22 @@ public class Vehicule {
 		return dispo;
 	}
 	
+	/**
+	 * @author Nicolas Dionne
+	 * 
+	 * Méthode permettant de convertir des milisecondes en jour
+	 * 
+	 * @param miliseconds : long un nombre de jour en milisecondes
+	 * @return int : l'équivalent du nombre de miliseconds en jour
+	 */
+	private int converterMilisecondsToDay(long miliseconds)
+	{
+		miliseconds /=24; //Pour chaque heure dans une journée
+		miliseconds /=60; //Pour chaque minute dans un heure
+		miliseconds /=60 ;//Pour chaque seconde dans une minute
+		miliseconds /=1000 ;// Puisque miliseconds
+		return (int) miliseconds;
+	}
 
 
 }
