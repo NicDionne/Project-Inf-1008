@@ -25,12 +25,15 @@ public class DAOCatalogueVehicule  {
 	 * 
 	 */
 	/**
+	 * Methode ayant pour but de sauvegarder dans la base de donner les informations
+	 * sur un véhicule
 	 * 
-	 * @param t
+	 * @author Nicolas Dionne
+	 * 
+	 * @param vehicule : vehicule que l'on souhait enregistrer
 	 */
-	public void save(Vehicule t) {
-		// TODO Auto-generated method stub
-		
+	public void save(Vehicule vehicule) {
+		csvWrite(vehicule);
 	}
 
 	/**
@@ -82,10 +85,6 @@ public class DAOCatalogueVehicule  {
 		// TODO Auto-generated method stub
 	}
 	
-	public void setAllDispo(Vehicule vehicule)
-	{
-		
-	}
 	
 	
 	/**
