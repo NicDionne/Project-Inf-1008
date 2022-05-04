@@ -26,12 +26,28 @@ public class Vehicule {
 	 * @param dateDebut : Date de début de location
 	 * @param dateFin : Date de fin de location
 	 */
-	public Vehicule(String categorie,int kilometrage, Date date, Date dateFin,String dispo) {
+	public Vehicule(String categorie,int kilometrage, Date date, String dispo) {
 		this.categorie = categorie;
 		this.kilometrage = kilometrage;
 		this.date = date;
 		this.dispo = dispo;
 	}
+	/**
+
+	 * 
+	 * @param categorie : Categorie du véhicule
+	 * @param kilometrage : Kilometrage de l'endometre
+	 * @param dateDebut : Date de début de location
+	 * @param dateFin : Date de fin de location
+	 */
+	public Vehicule(String ID,String categorie,int kilometrage, Date date, String dispo) {
+		this.categorie = categorie;
+		this.kilometrage = kilometrage;
+		this.date = date;
+		this.dispo = dispo;
+		IDVehicule =ID;
+	}
+	
 	
 	public Vehicule()
 	{
@@ -55,11 +71,10 @@ public class Vehicule {
 		
 		//On transforme les dispo en tab de char
 		char[] dispoTab = dispo.toCharArray();
-		
 		//On itère sur les jour de dispo à changer du véhicule
 		for(int i = coordonneDebut; i < coordonneFin && i < dispo.length() ; i++)
 			dispoTab[i] = '0'; // On indique indisponible
-		
+	
 		//On re-transforme en String
 		dispo = String.valueOf(dispoTab);
 	}
@@ -178,10 +193,7 @@ public class Vehicule {
 	 */
 	private int converterMilisecondsToDay(long miliseconds)
 	{
-		miliseconds /=24; //Pour chaque heure dans une journée
-		miliseconds /=60; //Pour chaque minute dans un heure
-		miliseconds /=60 ;//Pour chaque seconde dans une minute
-		miliseconds /=1000 ;// Puisque miliseconds
+		miliseconds = miliseconds/ 86400000;
 		return (int) miliseconds;
 	}
 

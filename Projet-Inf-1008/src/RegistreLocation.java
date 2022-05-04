@@ -43,7 +43,7 @@ public class RegistreLocation {
 		location.confirmationLocation();
 		//Mise a jour dans le systeme des dispo du vehicule
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
-		daoCatalogueVehicule.miseAJourVehicule(location.getVehicule());
+		daoCatalogueVehicule.miseAJourDispoVehicule(location.getVehicule());
 		//Savegarde de La location
 		DAOLocation daoCatalogueLocation = new DAOLocation();
 		int noLocation = daoCatalogueLocation.save(location);

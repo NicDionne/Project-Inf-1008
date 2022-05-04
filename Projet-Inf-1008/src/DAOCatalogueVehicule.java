@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class DAOCatalogueVehicule {
 	public final int NBRJOURSAUVEGARDER = 256;
 	public final String NOMFICHIER = "DBVehicule.csv";
 	private final String SEPARATOR = ",";
-	private final String DATEFORMAT = "MM/dd/yyyy";
+	private final String DATEFORMAT = "EEE MMM dd HH:mm:ss 'EDT' yyyy";
 
 	/**
 	 * INFO SUR MANIÈRE SAUVEGARDE DISPONIBILITÉ
@@ -23,10 +24,10 @@ public class DAOCatalogueVehicule {
 	 * 0 : Non - disponible 1 : Disponible 2 : Reserver 3 : En réparation
 	 * 
 	 */
-	public DAOCatalogueVehicule()
-	{
-		
+	public DAOCatalogueVehicule() {
+
 	}
+
 	/**
 	 * Methode ayant pour but de sauvegarder dans la base de donner les informations
 	 * sur un véhicule
@@ -83,8 +84,40 @@ public class DAOCatalogueVehicule {
 		// TODO Auto-generated method stub
 	}
 
-	public void miseAJourVehicule(Vehicule t) {
-		// TODO Auto-generated method stub
+	public void miseAJourDispoVehicule(Vehicule vehicule) {
+		String derniereLigne;
+		long dernierPointeurByte;
+		try {
+			// https://docs.oracle.com/javase/6/docs/api/java/io/RandomAccessFile.html
+			RandomAccessFile fichier = new RandomAccessFile(NOMFICHIER, "rw");
+
+			do {
+				// On garde une trace du dernier pointeur
+				dernierPointeurByte = fichier.getFilePointer();
+
+				// On lit la ligne
+				derniereLigne = fichier.readLine();
+
+				// On regarde si la ligne correspond au vehicule que l'on shouaite modifier les
+				// dispo
+				// On regarde deplus si la ligne est null
+				if (derniereLigne == null || !formatCSVToVehicule(derniereLigne).getID().equals(vehicule.getID()))
+					continue;
+
+				// Si nous avons trouver la ligne
+				// Il reste à ce positionner au bon byte
+				// On calcul les byte utiliser pour stocker les infos du véhicule - byte pour
+				// stocker les dispos
+				fichier.seek(dernierPointeurByte + derniereLigne.length() - NBRJOURSAUVEGARDER);
+				fichier.writeBytes(vehicule.getDispo());
+				break;
+			} while (derniereLigne != null);
+			fichier.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
@@ -111,11 +144,11 @@ public class DAOCatalogueVehicule {
 	 */
 	private String formatCSVVehicule(Vehicule vehicule) {
 		String vehiculeFormater = "";
-		vehiculeFormater += vehicule.getID() + SEPARATOR;			//0
-		vehiculeFormater += vehicule.getDate() + SEPARATOR;			//1
-		vehiculeFormater += vehicule.getKilometrage() + SEPARATOR;	//2
-		vehiculeFormater += vehicule.getCategorie() + SEPARATOR;	//3
-		vehiculeFormater += vehicule.getDispo() + "\n";				//4
+		vehiculeFormater += vehicule.getID() + SEPARATOR; // 0
+		vehiculeFormater += vehicule.getDate() + SEPARATOR; // 1
+		vehiculeFormater += vehicule.getKilometrage() + SEPARATOR; // 2
+		vehiculeFormater += vehicule.getCategorie() + SEPARATOR; // 3
+		vehiculeFormater += vehicule.getDispo() + "\n"; // 4
 		return vehiculeFormater;
 	}
 
@@ -131,27 +164,22 @@ public class DAOCatalogueVehicule {
 		Vehicule vehicule = new Vehicule();
 		String[] infoVehicule = stringVehicule.split(SEPARATOR);
 		vehicule.setID(infoVehicule[0]);
-		try {
-			vehicule.setDate(formateurDate.parse(infoVehicule[1]));
-		} catch (ParseException e) {
-			// LA BD est corrompue
-			e.printStackTrace();
-		}
+		vehicule.setDate(new Date(infoVehicule[1]));
 		vehicule.setKilometrage(Integer.parseInt(infoVehicule[2]));
 		vehicule.setCategorie(infoVehicule[3]);
 		vehicule.setDispo(infoVehicule[4]);
 		return vehicule;
 	}
-	
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * Méthode permettant de get tout les véhicule dispo selon une catégorie
-	 * et un intervalle de temps donné par dateDebut à dateFin
+	 *         Méthode permettant de get tout les véhicule dispo selon une catégorie
+	 *         et un intervalle de temps donné par dateDebut à dateFin
 	 * 
 	 * @param categorie : String Catégorie du véhicule
 	 * @param dateDebut : Date date début de l'intervalle de temps de disponibilité
-	 * @param dateFin : Date date de fin de l'intervalle de temps de disponibilité
+	 * @param dateFin   : Date date de fin de l'intervalle de temps de disponibilité
 	 * @return
 	 */
 	public ArrayList<Vehicule> getVehiculeDispo(String categorie, Date dateDebut, Date dateFin) {
@@ -168,7 +196,7 @@ public class DAOCatalogueVehicule {
 				// Si la catégorie du véhicule correspond
 				if (categorie.equals(currentLigne.split(",")[0])) {
 					// On vérifie que nos Date corresponde
-					if (verificationDate(currentLigne.split(",")[4],dateDebut,dateFin)) {
+					if (verificationDate(currentLigne.split(",")[4], dateDebut, dateFin)) {
 						// Transforme notre string sous le format d'un vehicule
 						// et on l'ajoute à la liste de véhicule répondants aux critères
 						listVehicule.add(formatCSVToVehicule(currentLigne));
@@ -182,51 +210,51 @@ public class DAOCatalogueVehicule {
 
 		return listVehicule;
 	}
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param dateFichier : String date du fichier sous format string suivant les critère de sauvegarde plus haut
-	 * @param dateDebut : Date date de début que le véhicule doit être disponible
-	 * @param dateFin : Date date de fin jusqu'à ou le véhicule doit être dispo
+	 * @param dateFichier : String date du fichier sous format string suivant les
+	 *                    critère de sauvegarde plus haut
+	 * @param dateDebut   : Date date de début que le véhicule doit être disponible
+	 * @param dateFin     : Date date de fin jusqu'à ou le véhicule doit être dispo
 	 * @return
 	 */
-	public boolean verificationDate(String dateFichier, Date dateDebut, Date dateFin)
-	{
-		boolean toutEstGood  = true;
-		
-		//On prend la date de début - la date d'ajourd'hui afin de calculer combien de charactère nous devons sauter
-		int coordonneDebut =  converterMilisecondsToDay(dateDebut.getTime() - new Date().getTime()  );
-		
-		//On calcule l'intervalle de jour nécessaire de disponibilité
-		int coordonneFin = coordonneDebut + converterMilisecondsToDay(dateFin.getTime() - dateDebut.getTime()  );
-		
-		//On itère vérifier sur les date du véhicule
-		for(int i = coordonneDebut; i < coordonneFin && i < dateFichier.length() ; i++)
-		{
-			//Si le véhicule est sois indisponible ou en réparation
-			if(dateFichier.charAt(i) == '0' || dateFichier.charAt(i) == '3')
-			{
+	public boolean verificationDate(String dateFichier, Date dateDebut, Date dateFin) {
+		boolean toutEstGood = true;
+
+		// On prend la date de début - la date d'ajourd'hui afin de calculer combien de
+		// charactère nous devons sauter
+		int coordonneDebut = converterMilisecondsToDay(dateDebut.getTime() - new Date().getTime());
+
+		// On calcule l'intervalle de jour nécessaire de disponibilité
+		int coordonneFin = coordonneDebut + converterMilisecondsToDay(dateFin.getTime() - dateDebut.getTime());
+
+		// On itère vérifier sur les date du véhicule
+		for (int i = coordonneDebut; i < coordonneFin && i < dateFichier.length(); i++) {
+			// Si le véhicule est sois indisponible ou en réparation
+			if (dateFichier.charAt(i) == '0' || dateFichier.charAt(i) == '3') {
 				toutEstGood = false;
-				//Pas besoin de continuer d'itéré
+				// Pas besoin de continuer d'itéré
 				break;
 			}
 		}
 		return toutEstGood;
 	}
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * Méthode permettant de convertir des milisecondes en jour
+	 *         Méthode permettant de convertir des milisecondes en jour
 	 * 
 	 * @param miliseconds : long un nombre de jour en milisecondes
 	 * @return int : l'équivalent du nombre de miliseconds en jour
 	 */
-	private int converterMilisecondsToDay(long miliseconds)
-	{
-		miliseconds /=24; //Pour chaque heure dans une journée
-		miliseconds /=60; //Pour chaque minute dans un heure
-		miliseconds /=60 ;//Pour chaque seconde dans une minute
-		miliseconds /=1000 ;// Puisque miliseconds
+	private int converterMilisecondsToDay(long miliseconds) {
+		miliseconds /= 24; // Pour chaque heure dans une journée
+		miliseconds /= 60; // Pour chaque minute dans un heure
+		miliseconds /= 60;// Pour chaque seconde dans une minute
+		miliseconds /= 1000;// Puisque miliseconds
 		return (int) miliseconds;
 	}
 
