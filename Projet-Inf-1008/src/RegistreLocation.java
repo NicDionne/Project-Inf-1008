@@ -21,7 +21,14 @@ public class RegistreLocation {
 	public static ArrayList<Vehicule> SaisiNoReservation(int noReservation)
 	{
 		GestionnaireReservation gestionnaire = new GestionnaireReservation();
+		//On get la reservation par son no de reservation
 		Reservation res = gestionnaire.getReservation(noReservation);
+		//On vérifie qu'on a bien trouver
+		//Si on a pas trouver
+		if(res == null)
+		{
+			return null;
+		}
 		location.setDateDebut(res.getDateDebut());
 		location.setDateFin(res.getDateFin());
 		location.setClient(res.getID_client());

@@ -17,7 +17,7 @@ public class GestionnaireReservation {
         this.listeReservation.add(reservation) ;
     }
 
-    /**@author Quentin Tambon et Nicolas Dionne
+    /**@author Quentin Tambon
      * 
      *  méthode getReservation get une réservation
      * @param numResa : un numéro de réservation
@@ -29,8 +29,6 @@ public class GestionnaireReservation {
                 return r ;
             }
         }
-        //Si on ne trouve pas on regarde en memoire persistent
-        
         return null ;
     }
     

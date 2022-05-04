@@ -28,6 +28,17 @@ public class GUI {
 	/**
 	 * @author Nicolas Dionne
 	 * 
+	 * Methode permetant à tout moment lors du processus de création de la nouvelle page
+	 * un retour au menu plus générale que celui présent.
+	 * Par exemple si nous somme dans le menu de location, nous irons au menu principale.
+	 */
+	public void cancelCreation()
+	{
+		upperMenu.getJFrame().setVisible(true);
+	}
+	/**
+	 * @author Nicolas Dionne
+	 * 
 	 * Methode permettant de saisir une entrer de la part de l'utilisateur, ce dernier bloque l'utilisateur
 	 * tant qu'il n'aura pas repondu ou quitter
 	 * 
