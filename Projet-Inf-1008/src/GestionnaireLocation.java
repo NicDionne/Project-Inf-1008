@@ -14,22 +14,6 @@ public class GestionnaireLocation {
 	        listeLocation = new ArrayList<>() ;
 	    }
 	 
-	public static void DebuterLocation()
-	{
-		
-	}
-	public static void SaisiNoReservation(int noReservation)
-	{
-		
-	}
-	public static void SelectionVehicule(Vehicule vehicSelect)
-	{
-		
-	}
-	public static void ConfirmationLocation()
-	{
-		
-	}
 	
 	/** méthode Restitution d'un vehicule 
      * @param numLoc : un numéro de Location

@@ -18,9 +18,10 @@ public class GestionnaireClient {
 	public static void CreationClient(String nom, String prenom, String adresse, String noTelDom,
 			String noTelMob, String noPermis, String noCarteBancaire)
 	{
-	
+		int IDClient;
 		Client nouveauClient = new Client(nom, prenom, adresse, noTelDom,noTelMob, noPermis, noCarteBancaire);
-		daoClient.save(nouveauClient);
+		IDClient = daoClient.save(nouveauClient);
+		
 	}
 	
 	

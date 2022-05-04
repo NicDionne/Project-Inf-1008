@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Scanner;  
 
 public class DAOClient  {
@@ -19,15 +22,21 @@ public class DAOClient  {
 	 * 
 	 * @author Nicolas Dionne
 	 * 
+	 * @return int: l'ID client generer par la BD
 	 * @param client : client que l'on souhait enregistrer
 	 */
-	public  void save(Client client)
+	public  int save(Client client)
 	{
+		int IDClient;
+		IDClient= nextID();
+		client.setIDClient(IDClient);
 		csvWrite(client);
+		incrementNextID(IDClient);
+		return IDClient;
 	}
 	
 	
-	public  ArrayList<Client> get(int id) {
+	public  Client get(int id) {
 		return null;
 	} 
 	
@@ -91,6 +100,48 @@ public class DAOClient  {
 		client.setNoPermis(infoClient[6]);
 		client.setNoCarteBancaire(infoClient[7]);
 		return client;
+	}
+	/**@author Nicolas Dionne
+	 * 
+	 * Methode permetant de generer un ID unique a 9 chiffre
+	 * @return L'identifiant unique nouvellement creer, -1 si un probleme est survenu
+	 */
+	private int nextID(){
+		int dernierID;
+		try {
+			//On Lit la derniere ID Utiliser
+			File fichier = new File(NOMFICHIER);
+			Scanner reader = new Scanner(fichier);
+			dernierID = reader.nextInt();
+			reader.close();
+			return (dernierID+1);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	/**
+	 * @author Nicolas Dionne
+	 * Methode permetant d'incrementer notre generateur d'identifiant
+	 * @param dernierID : int dernier ID sortit generer par le systeme, si incertint, appeler la methode nextID()
+	 */
+	private void incrementNextID(int dernierID)
+	{
+		String code;
+		try {
+			//https://docs.oracle.com/javase/6/docs/api/java/io/RandomAccessFile.html
+			RandomAccessFile fichier = new RandomAccessFile(NOMFICHIER,"rw");
+			fichier.seek(0);
+			code = Integer.toString(dernierID+1);
+			fichier.writeBytes(code);
+			fichier.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 }

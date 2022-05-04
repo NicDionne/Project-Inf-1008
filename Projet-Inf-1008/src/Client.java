@@ -32,8 +32,6 @@ public class Client {
 		this.noTelMob = noTelMob;
 		this.noPermis = noPermis;
 		this.noCarteBancaire = noCarteBancaire;
-		//Temporaire
-		this.idClient = generateIDClient();
 	}
 	/**
 	 * @author Nicolas Dionne
@@ -45,20 +43,7 @@ public class Client {
 	{
 		
 	}
-	/**TEMPO****
-	 * 
-	 * @author Nicolas Dionne
-	 * 
-	 * Permet de generer un identifiant unique a chaque client
-	 * @return : int ; retourne un identifiant unique client generer automatiquement par la methode
-	 */
-	public int generateIDClient()
-	{
-		compteurClient++;
-		return compteurClient;
-		
-	}
-	
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
@@ -71,7 +56,7 @@ public class Client {
 	}
 	
 	
-	//Accesseur de client, ND
+	//Accesseur de client, N.D.
 	public int getIDClient()
 	{ 
 		return idClient;
@@ -106,7 +91,7 @@ public class Client {
 		return noCarteBancaire;
 	}
 	
-	//Setter
+	//Setter N.D.
 	public void setIDClient(int idClient)
 	{ 
 		this.idClient = idClient;

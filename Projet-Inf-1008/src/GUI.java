@@ -33,11 +33,30 @@ public class GUI {
 	 * 
 	 * @param message : String correspondant au message que l'on veut envoyer
 	 * @param titre : String du titre de la boite message
-	 * @return : Int Entrer de la part de l'utilisateur, null si l'utilisateur annule
+	 * @return : Int Entrer de la part de l'utilisateur, -1 si l'utilisateur annule
 	 */
 	public int inputBoxInt(String message, String titre)
 	{
-		return Integer.parseInt(JOptionPane.showInputDialog(null,message,titre,JOptionPane.INFORMATION_MESSAGE));
+		String input;
+		int entrer;
+		while(true)
+		{
+			input = JOptionPane.showInputDialog(null,message,titre,JOptionPane.INFORMATION_MESSAGE);
+			if(input == null)
+			{
+				return -1;
+			}
+			try
+			{
+			entrer = Integer.parseInt(input);
+			return entrer;
+			}
+			catch(Exception e) {
+				showMessage("Un mauvaise entrer a ete fait, Seul nombre entier sont accepter","Erreur");
+			}
+		}
+		
+		
 	}
 	
 	/**
