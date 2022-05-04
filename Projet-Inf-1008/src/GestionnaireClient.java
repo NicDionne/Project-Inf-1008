@@ -14,14 +14,15 @@ public class GestionnaireClient {
 	 * @param noTelMob : Numéro de téléphone mobile du client (incluant le code régional en premier) 
 	 * @param noPermis : No de permis du client
 	 * @param noCarteBancaire : No de carte bancaire du client
+	 * @return 
 	 */
-	public static void CreationClient(String nom, String prenom, String adresse, String noTelDom,
+	public static int CreationClient(String nom, String prenom, String adresse, String noTelDom,
 			String noTelMob, String noPermis, String noCarteBancaire)
 	{
 		int IDClient;
 		Client nouveauClient = new Client(nom, prenom, adresse, noTelDom,noTelMob, noPermis, noCarteBancaire);
 		IDClient = daoClient.save(nouveauClient);
-		
+		return IDClient;
 	}
 	
 	

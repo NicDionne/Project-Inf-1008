@@ -21,14 +21,20 @@ public class Registre {
 	 *  client.
 	 * @author Nicolas Dionne
 	 * 
-	 *        
+	 * @param gui : Gui du menu upper
+	 * @param nom : String nom de l'utilisateur
+	 * @param prenom : String prenom de l'utilisateur
+	 * @param adresse : String adresse de l'utilisateur
+	 * @param noTelDom : String noTel domiciliaire de l'utilisateur
+	 * @param noTelMob : String noTel Mobile de l'utilisateur
+	 * @param noPermis : String no de permis de l'utilisateur
+	 * @param noCarteBancaire : String no de Cart bancaire de l'utilisateur
 	 */
 	public static void creationClient(GUI gui, String nom, String prenom, String adresse, String noTelDom,
 			String noTelMob, String noPermis, String noCarteBancaire) {
-		
-		
-		GestionnaireClient.CreationClient(nom, prenom, adresse, noTelDom, noTelMob, noPermis, noCarteBancaire);
-		gui.showMessage("Le compte client a été créer avec succès", "Message système");
+		int IDClient;
+		IDClient = GestionnaireClient.CreationClient(nom, prenom, adresse, noTelDom, noTelMob, noPermis, noCarteBancaire);
+		gui.showMessage("Le compte client a été créer avec succès. Nouvelle Identifiant du client : " + IDClient, "Message système");
 		gui.toUpperMenu();
 	}
 
