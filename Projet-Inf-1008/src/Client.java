@@ -33,6 +33,7 @@ public class Client {
 		this.noPermis = noPermis;
 		this.noCarteBancaire = noCarteBancaire;
 	}
+	
 	/**
 	 * @author Nicolas Dionne
 	 * 

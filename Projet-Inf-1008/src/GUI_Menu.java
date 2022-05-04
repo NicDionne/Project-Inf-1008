@@ -202,6 +202,7 @@ public class GUI_Menu  extends GUI {
 		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void ajouterClientButtonClick() {
+		this.upperMenu.hide();
 		Registre.demandeCreationDossierClient(this);
 	}
 	private void modifierDossierClientButtonClick() {

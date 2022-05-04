@@ -11,11 +11,8 @@ public class RegistreLocation {
 	{
 		//On crée une location
 		location = new Location();
-		
-		upperMenu.hide();
 		//Interface utilisateur traitant l'ajout d'un véhicule
 		GUI_AjoutLocation gui = new GUI_AjoutLocation(upperMenu);
-		
 	}
 	
 	public static ArrayList<Vehicule> SaisiNoReservation(int noReservation)
