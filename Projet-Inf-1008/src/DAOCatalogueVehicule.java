@@ -9,7 +9,7 @@ public class DAOCatalogueVehicule  {
 		
 	}
 
-	public ArrayList<Vehicule> get(int id) {
+	public Vehicule get(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

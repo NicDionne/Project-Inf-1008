@@ -4,6 +4,7 @@ public class Vehicule {
 	private String categorie;
 	private int kilometrage;
 	private Date date;
+	private int IDVehicule;
 	/**
 
 	 * 
@@ -55,6 +56,14 @@ public class Vehicule {
 	public Date getDate()
 	{
 		return date;
+	}
+	/**
+	 * @Author Nicolas Dionne
+	 * Getter pour l'identifiant du vehicule 
+	 * @return int : identifiant du véhicule
+	 */
+	public int getID() {
+		return IDVehicule;
 	}
 	
 

@@ -17,15 +17,20 @@ public class GestionnaireReservation {
         this.listeReservation.add(reservation) ;
     }
 
-    /** méthode getReservation get une réservation
+    /**@author Quentin Tambon et Nicolas Dionne
+     * 
+     *  méthode getReservation get une réservation
      * @param numResa : un numéro de réservation
      */
     public Reservation getReservation(Integer numResa){
+    	//On cherche en memoire vive
         for(Reservation r : listeReservation){
             if(r.getNumResa().equals(numResa)){
                 return r ;
             }
         }
+        //Si on ne trouve pas on regarde en memoire persistent
+        
         return null ;
     }
     

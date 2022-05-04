@@ -10,6 +10,7 @@ public class Location {
 	    private Date dateFin ;
 	    private Client client;
 	    private Vehicule vehicule;
+
 	    
 	    /**
 	     * Constructeur
@@ -32,6 +33,17 @@ public class Location {
 	        this.dateFin = dateFin;
 	    }
 
+	    /**@author Nicolas Dionne
+		 * 
+		 * Methode permettant de confirmer la location
+		 */
+		public void confirmationLocation() {
+			// TODO Auto-generated method stub
+			vehicule.retirerDispo(dateDebut, dateFin);
+		}
+	    
+	    
+	    //Accesseur
 	    /** @author Kamil MAZAN **/
 		public Integer getNumLoc() {
 			return numLoc;
@@ -81,7 +93,7 @@ public class Location {
 			this.dateDebut = dateDebut;
 		}
 		/**@author Nicolas Dionne
-		 * Setter pour le client
+		 * Setter pour le client à partir de son identifiant client
 		 * @param id_client : int correspondant a l'identifiant client
 		 */
 		public void setClient(int id_client) {
@@ -96,6 +108,22 @@ public class Location {
 		{
 			return vehicule;
 		}
+		/** @author Nicolas Dionne
+		 * Getter pour l'ID du vehicule
+	     * @return int : ID vehicule correspondant au vehicule louer
+	     */
+		public int getVehiculeID()
+		{
+			return vehicule.getID();
+		}
+		/** @author Nicolas Dionne
+		 * Getter pour l'ID du client
+	     * @return int : ID client correspondant au client qui a louer
+	     */
+		public int getClientID()
+		{
+			return client.getIDClient();
+		}
 		/**@author Nicolas Dionne
 		 * Setter pour le vehicule
 		 * @param vehic : Vehicule correspondant au vehicule louer
@@ -104,16 +132,26 @@ public class Location {
 		{
 			this.vehicule = vehic;
 		}
-
+		/**@author Nicolas Dionne
+		 * Setter pour le vehicule à partir de l'identifiant du véhicule
+		 * @param vehiculeID : int entier correspondant à l'identifiant du vehicule louer
+		 */
+		public void setVehicule(int vehiculeID)
+		{
+			DAOCatalogueVehicule daoCatalogue = new DAOCatalogueVehicule();
+			this.vehicule = daoCatalogue.get(vehiculeID);
+		}
+		
+		/**@author Nicolas Dionne
+		 * Getter pour avoir le contrat de location sous format String
+		 * @return String : Le contrat sous forme string
+		 */
 		public String getStringContrat() {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		
 
-		public void confirmationLocation() {
-			// TODO Auto-generated method stub
-			vehicule.retirerDispo(dateDebut, dateFin);
-		}
 
 	    
 	    
