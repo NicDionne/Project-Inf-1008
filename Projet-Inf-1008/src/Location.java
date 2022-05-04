@@ -110,9 +110,9 @@ public class Location {
 		}
 		/** @author Nicolas Dionne
 		 * Getter pour l'ID du vehicule
-	     * @return int : ID vehicule correspondant au vehicule louer
+	     * @return String : ID vehicule correspondant au vehicule louer
 	     */
-		public int getVehiculeID()
+		public String getVehiculeID()
 		{
 			return vehicule.getID();
 		}
@@ -134,9 +134,9 @@ public class Location {
 		}
 		/**@author Nicolas Dionne
 		 * Setter pour le vehicule à partir de l'identifiant du véhicule
-		 * @param vehiculeID : int entier correspondant à l'identifiant du vehicule louer
+		 * @param vehiculeID : String correspondant à l'identifiant du vehicule louer
 		 */
-		public void setVehicule(int vehiculeID)
+		public void setVehicule(String vehiculeID)
 		{
 			DAOCatalogueVehicule daoCatalogue = new DAOCatalogueVehicule();
 			this.vehicule = daoCatalogue.get(vehiculeID);

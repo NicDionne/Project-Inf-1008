@@ -134,7 +134,7 @@ public class DAOLocation  {
 			// LA BD est corrompue
 			e.printStackTrace();
 		}
-		location.setVehicule(Integer.parseInt(infoClient[3]));
+		location.setVehicule(infoClient[3]);
 		location.setClient(Integer.parseInt(infoClient[4]));
 		return location;
 	}
