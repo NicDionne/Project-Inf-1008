@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class DAOCatalogueVehicule  {
 	public final int NBRJOURSAUVEGARDER = 256;
 	public final String NOMFICHIER = "DBVehicule";
-	private static final String SEPARATOR = ",";
-	private static final String DATEFORMAT = "MM/dd/yyyy";
+	private final String SEPARATOR = ",";
+	private final String DATEFORMAT = "MM/dd/yyyy";
 	/**INFO SUR MANIÈRE SAUVEGARDE DISPONIBILITÉ
 	 * 
 	 * À La Fin des info de chaque véhicule 256 charactères sont 

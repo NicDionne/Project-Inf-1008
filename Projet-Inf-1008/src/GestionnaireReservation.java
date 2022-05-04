@@ -23,7 +23,7 @@ public class GestionnaireReservation {
      * @param numResa : un numéro de réservation
      */
     public Reservation getReservation(Integer numResa){
-    	//On cherche en memoire vive
+    	//On cherche en memoire vive...
         for(Reservation r : listeReservation){
             if(r.getNumResa().equals(numResa)){
                 return r ;

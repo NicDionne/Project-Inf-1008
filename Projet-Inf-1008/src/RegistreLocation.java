@@ -20,28 +20,34 @@ public class RegistreLocation {
 		GestionnaireReservation gestionnaire = new GestionnaireReservation();
 		//On get la reservation par son no de reservation
 		Reservation res = gestionnaire.getReservation(noReservation);
-		//On vérifie qu'on a bien trouver
-		//Si on a pas trouver
+		//On vérifie qu'on a bien trouver Si on a pas trouver
 		if(res == null)
 		{
 			return null;
 		}
+		//setDonnees() on set les donnes
 		location.setDateDebut(res.getDateDebut());
 		location.setDateFin(res.getDateFin());
 		location.setClient(res.getID_client());
+		//Get les vehicule dispo
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
 	}
+	
 	public static String SelectionVehicule(Vehicule vehicSelect) {
 		location.setVehicule(vehicSelect);
 		return location.getStringContrat();
 	}
-	public static void confirmationLocation()
+	public static String confirmationLocation()
 	{
 		location.confirmationLocation();
+		//Mise a jour dans le systeme des dispo du vehicule
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		daoCatalogueVehicule.miseAJourVehicule(location.getVehicule());
+		//Savegarde de La location
 		DAOLocation daoCatalogueLocation = new DAOLocation();
 		int noLocation = daoCatalogueLocation.save(location);
+		//Contrat de location
+		return "Numéro de Location : "+ noLocation+ " \n" +location.toString();
 	}
 }

@@ -74,6 +74,7 @@ public class Reservation extends GestionnaireReservation {
     
    
     //Accesseur 
+    
     /**@author Nicolas Dionne
      * 
      * getter pour la categorie vehicule 
@@ -101,7 +102,6 @@ public class Reservation extends GestionnaireReservation {
     {
     	return dateFin;
     }
-    
     /**@author Nicolas Dionne
      * 
      * @return int: identifiant du client correspondant a la reservation

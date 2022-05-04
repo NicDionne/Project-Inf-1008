@@ -38,7 +38,7 @@ public class Location {
 		 * Methode permettant de confirmer la location
 		 */
 		public void confirmationLocation() {
-			// TODO Auto-generated method stub
+			//On retire Les dispo du véhicule
 			vehicule.retirerDispo(dateDebut, dateFin);
 		}
 	    
@@ -100,6 +100,7 @@ public class Location {
 			ID_client = id_client;
 			client = GestionnaireClient.getClient(id_client);
 		}
+		
 	    /** @author Nicolas Dionne
 		 * Getter pour le vehicule
 	     * @return Vehicule correspondant au vehicule louer
