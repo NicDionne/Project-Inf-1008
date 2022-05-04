@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class DAOCatalogueVehicule  {
 	public final int NBRJOURSAUVEGARDER = 256;
-	public final String NOMFICHIER = "DBVehicule";
+	public final String NOMFICHIER = "DBVehicule.csv";
 	private final String SEPARATOR = ",";
 	private final String DATEFORMAT = "MM/dd/yyyy";
 	/**INFO SUR MANIÈRE SAUVEGARDE DISPONIBILITÉ
