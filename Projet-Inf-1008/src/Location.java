@@ -94,11 +94,10 @@ public class Location {
 		}
 		/**@author Nicolas Dionne
 		 * Setter pour le client à partir de son identifiant client
-		 * @param id_client : int correspondant a l'identifiant client
+		 * @param Client : Client correspondant a la location
 		 */
-		public void setClient(int id_client) {
-			ID_client = id_client;
-			client = GestionnaireClient.getClient(id_client);
+		public void setClient(Client client) {
+			this.client = client ;
 		}
 		
 	    /** @author Nicolas Dionne

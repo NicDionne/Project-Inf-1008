@@ -28,7 +28,7 @@ public class RegistreLocation {
 		//setDonnees() on set les donnes
 		location.setDateDebut(res.getDateDebut());
 		location.setDateFin(res.getDateFin());
-		location.setClient(res.getID_client());
+		location.setClient(GestionnaireClient.getClient(res.getID_client()));
 		//Get les vehicule dispo
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
