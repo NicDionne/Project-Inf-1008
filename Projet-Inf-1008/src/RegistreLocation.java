@@ -26,10 +26,11 @@ public class RegistreLocation {
 		{
 			return null;
 		}
+		Client client = GestionnaireClient.getClient(res.getID_client());
 		//setDonnees() on set les donnes
 		location.setDateDebut(res.getDateDebut());
 		location.setDateFin(res.getDateFin());
-		location.setClient(res.getID_client());
+		location.setClient(client);
 		//Get les vehicule dispo
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
@@ -44,7 +45,7 @@ public class RegistreLocation {
 		location.confirmationLocation();
 		//Mise a jour dans le systeme des dispo du vehicule
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
-		daoCatalogueVehicule.miseAJourVehicule(location.getVehicule());
+		daoCatalogueVehicule.miseAJourDispoVehicule(location.getVehicule());
 		//Savegarde de La location
 		DAOLocation daoCatalogueLocation = new DAOLocation();
 		int noLocation = daoCatalogueLocation.save(location);

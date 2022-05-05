@@ -135,7 +135,7 @@ public class DAOLocation  {
 			e.printStackTrace();
 		}
 		location.setVehicule(infoClient[3]);
-		location.setClient(Integer.parseInt(infoClient[4]));
+		location.setClient(GestionnaireClient.getClient(Integer.parseInt(infoClient[4])));
 		return location;
 	}
 	/**
