@@ -6,7 +6,8 @@ public class RegistreLocation {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * Commence une location
+	 * Méthode permettant de Commencer une location
+	 * 
 	 */
 	public static void debuterLocation(GUI upperMenu)
 	{
@@ -16,6 +17,12 @@ public class RegistreLocation {
 		GUI_AjoutLocation gui = new GUI_AjoutLocation(upperMenu);
 	}
 	
+	/**
+	 * @author Nicolas Dionne
+	 * 
+	 * @param noReservation : int numéro de réservation de la réservation 
+	 * @return ArrayList<Vehicule> : Liste des véhicule répondant au crtières établis par la réservation
+	 */
 	public static ArrayList<Vehicule> SaisiNoReservation(int noReservation)
 	{
 		GestionnaireReservation gestionnaire = new GestionnaireReservation();
@@ -36,10 +43,20 @@ public class RegistreLocation {
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
 	}
 	
+	/**
+	 * @author Nicolas Dionne
+	 * 
+	 * @param vehicSelect : Vehicule vehicule sélectionner par l'utilisateur 
+	 * @return String : Le contrat de location sous forme String
+	 */
 	public static String SelectionVehicule(Vehicule vehicSelect) {
 		location.setVehicule(vehicSelect);
 		return location.getStringContrat();
 	}
+	/**
+	 * 
+	 * @return String : Le contrat de location finaliser avec son numéro d'identification de location
+	 */
 	public static String confirmationLocation()
 	{
 		location.confirmationLocation();
@@ -52,6 +69,7 @@ public class RegistreLocation {
 		//Contrat de location
 		return "Numéro de Location : "+ noLocation+ " \n" +location.toString();
 	}
+	
 	
 	/**@author Kamil MAZAN 
 	 * méthode Restitution d'un vehicule 

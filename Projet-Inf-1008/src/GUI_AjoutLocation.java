@@ -9,7 +9,8 @@ import java.util.Date;
  */
 public class GUI_AjoutLocation extends GUI {
 	final JPanel panel1 = new JPanel();
-	private JList list1;
+	private JList<Vehicule> jListeVehicule;
+	private ArrayList<Vehicule> listeVehicule;
 	private JButton confirmerButton;
 	private JButton annulerButton;
 
@@ -23,47 +24,73 @@ public class GUI_AjoutLocation extends GUI {
 		abort = !JListInitilisation();
 		//L'utilisateur indique surement qu'il veut annuler l'ajout d'une location
 		if(abort)
-			//On interompe la création de l'interface
-			return ;
+			return ;//On interompe la création de l'interface
+		
 		// Initialisation des variables
 		frame = new JFrame("Formulaire ajout client");
 		
-
-		// JFrame initialisation
-		frame.setContentPane(panel1);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.pack();
-		frame.setVisible(true);
-		frame.setSize(400, 300);
+		//Configuration de l'interface
 		panel1.setLayout(new BorderLayout(0, 0));
 		final JPanel panel2 = new JPanel();
 		panel2.setLayout(new BorderLayout(0, 0));
 		panel1.add(panel2, BorderLayout.WEST);
 		final JScrollPane scrollPane1 = new JScrollPane();
 		panel2.add(scrollPane1, BorderLayout.CENTER);
-		scrollPane1.setViewportView(list1);
+		scrollPane1.setViewportView(jListeVehicule);
 		final JPanel panel3 = new JPanel();
 		panel3.setLayout(new BorderLayout(0, 0));
 		panel1.add(panel3, BorderLayout.EAST);
+		
+		//Configuration Bouton pour annuler
 		annulerButton = new JButton();
 		annulerButton.setText("Annuler");
+		annulerButton.addActionListener(e -> annulerButtonClick());
 		panel3.add(annulerButton, BorderLayout.SOUTH);
+		
+		//Configuration Bouton pour confirmer
 		confirmerButton = new JButton();
 		confirmerButton.setText("Confirmer");
+		confirmerButton.addActionListener(e -> confirmerButtonClick());
 		panel1.add(confirmerButton, BorderLayout.SOUTH);
+		
+		//Texte indiquant de séléctionner un véhicule
 		final JLabel label1 = new JLabel();
 		label1.setText("Veuiller selectionner un vehicule");
 		panel1.add(label1, BorderLayout.NORTH);
 
+		// JFrame initialisation
+		upperMenu.hide();
+		frame.setContentPane(panel1);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
+		frame.setSize(400, 300);
 	}
+	/**
+	 * 
+	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer"
+	 */
+	private void confirmerButtonClick() {
+		Vehicule vehicSelectionner;
+		vehicSelectionner = listeVehicule.get(jListeVehicule.getSelectedIndex());
+		RegistreLocation.SelectionVehicule(vehicSelectionner);
+	}
+
+	/**
+	 * 
+	 * Event se produisant lorsqu'on presse sur le bouton : "Annuler"
+	 */
+	private void annulerButtonClick() {
+		this.toUpperMenu();
+	}
+
+	
 	/**@author Nicolas Dionne
 	 * 
 	 * Methode ayant pour but d'initialiser la JList afin qu'elle puisse être afficher
 	 * @return true si tout c'est bien passer, false si la création doit etre aborter.
 	 */
 	private boolean JListInitilisation() {
-
-		ArrayList<Vehicule> listVehic;
 		boolean toutEstBeau = true;
 		int noReser;
 		// Tant que l'utilisateur ne veut pas quitter ou qu'il entre de mauvaise réponse
@@ -78,17 +105,17 @@ public class GUI_AjoutLocation extends GUI {
 				
 			else {
 				// On va fetch la liste des vehicule par le registre
-				listVehic = RegistreLocation.SaisiNoReservation(noReser);
+				listeVehicule = RegistreLocation.SaisiNoReservation(noReser);
 
 				// Si elle n'est pas nulle
-				if (listVehic != null) {
+				if (listeVehicule != null) {
 					// On la transforme pour la JList
-					String[] tab = new String[listVehic.size()];
+					String[] tab = new String[listeVehicule.size()];
 					// Petit formatage pour la JList precisement
-					for (int i = 0; i < listVehic.size(); i++)
-						tab[i] = listVehic.get(i).getCategorie() + " " + listVehic.get(i).getKilometrage()
-								+ listVehic.get(i).getDate();
-					list1 = new JList(tab);
+					for (int i = 0; i < listeVehicule.size(); i++)
+						tab[i] = listeVehicule.get(i).getCategorie() + " " + listeVehicule.get(i).getKilometrage()
+								+ listeVehicule.get(i).getDate();
+					jListeVehicule = new JList(tab);
 				}
 				// Sinon, On affiche l'erreur et on recommence
 				else
@@ -96,8 +123,6 @@ public class GUI_AjoutLocation extends GUI {
 					toutEstBeau = false;
 					showMessage("Une erreur c'est produit nous avons pas pu trouver votre \n réservation avec le numéro de réservation entrer", "Message d'erreur");
 				}
-					
-
 			}
 		} while (!toutEstBeau);
 		return toutEstBeau;
