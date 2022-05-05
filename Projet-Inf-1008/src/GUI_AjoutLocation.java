@@ -73,7 +73,24 @@ public class GUI_AjoutLocation extends GUI {
 	private void confirmerButtonClick() {
 		Vehicule vehicSelectionner;
 		vehicSelectionner = listeVehicule.get(jListeVehicule.getSelectedIndex());
-		RegistreLocation.SelectionVehicule(vehicSelectionner);
+		
+		String contrat;
+		//Appelle du registre pour la sélection du véhicule
+		contrat = RegistreLocation.SelectionVehicule(vehicSelectionner);
+		
+		//Formatage des choix d'option pour confirmer ou annuler location
+		String[] options = {"Confirmer","Annuler"};
+		int choixUtilisateur;
+		choixUtilisateur = JOptionPane.showOptionDialog(null, contrat, "Contrat de location", JOptionPane.DEFAULT_OPTION,JOptionPane.INFORMATION_MESSAGE, null, options, options[0]); 
+		
+		//On vérifie si l'utilisateur confirme
+		if(choixUtilisateur == 0)
+			//On appelle la méthode du registre traitant la partie 4 du cas 7 Ajouter une location
+			this.showMessage(RegistreLocation.confirmationLocation(), "Confirmation de location");
+		
+		//Si l'utilisateur veut annuler
+		else 
+			this.toUpperMenu();
 	}
 
 	/**

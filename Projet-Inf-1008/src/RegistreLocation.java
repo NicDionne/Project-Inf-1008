@@ -45,7 +45,7 @@ public class RegistreLocation {
 	
 	/**
 	 * @author Nicolas Dionne
-	 * 
+	 *Methode du RegistreLocation Pour le Cas : Ajouter Une Location
 	 * @param vehicSelect : Vehicule vehicule sélectionner par l'utilisateur 
 	 * @return String : Le contrat de location sous forme String
 	 */
@@ -54,6 +54,7 @@ public class RegistreLocation {
 		return location.getStringContrat();
 	}
 	/**
+	 *Methode du RegistreLocation Pour le Cas : Ajouter Une Location
 	 * 
 	 * @return String : Le contrat de location finaliser avec son numéro d'identification de location
 	 */
