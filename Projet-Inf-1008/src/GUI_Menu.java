@@ -3,7 +3,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import javax.swing.UIManager.*;
 /**
- *  
+ *
  * @author Nicolas Dionne
  *
  *Menu principale du registre utilisé grandement par le préposé. 
@@ -13,38 +13,40 @@ import javax.swing.UIManager.*;
  *Fait avec l'aide de IntelliJ IDEA
  */
 public class GUI_Menu  extends GUI {
-	private JPanel panel1;
-	private JButton annulerUneRéservationButton;
-	private JButton ouvrirDossierClientButton;
-	private JButton modifierDossierClientButton;
-	private JButton ajouterClientButton;
-	private JButton retirerClientButton;
-	private JButton réstituerLocationButton;
-	private JButton modifierUneRéservationButton;
-	private JButton ajouterRéservationButton;
-	private JButton deconnexionButton;
-	private JButton retirerUneRéservationButton;
+    private JPanel panel1;
+    private JButton annulerUneRéservationButton;
+    private JButton ouvrirDossierClientButton;
+    private JButton modifierDossierClientButton;
+    private JButton ajouterClientButton;
+    private JButton retirerClientButton;
+    private JButton réstituerLocationButton;
+    private JButton modifierUneRéservationButton;
+    private JButton ajouterRéservationButton;
+    private JButton deconnexionButton;
+    private JButton retirerUneRéservationButton;
     private JButton ajouterLocationButton;
-	private JButton consulterLaListeDesButton;
-	
-	public GUI_Menu()
-	{ 	
-		frame = new JFrame("Menu principale");
-		//Set le menu supérieur
-		this.upperMenu = this;
-		
-		//Pour le style réf : https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/nimbus.html
-		try {
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            break;
-		        }
-		    }
-		} catch (Exception e) {
-		    // If Nimbus is not available, you can set the GUI to another look and feel.
-		}
-		panel1 = new JPanel();
+    private JButton consulterLaListeDesButton;
+    private JButton ajouterVehiculeButton;
+    private JButton retirerVehiculeButton;
+
+    public GUI_Menu()
+    {
+        frame = new JFrame("Menu principale");
+        //Set le menu supérieur
+        this.upperMenu = this;
+
+        //Pour le style réf : https://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/nimbus.html
+        try {
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            // If Nimbus is not available, you can set the GUI to another look and feel.
+        }
+        panel1 = new JPanel();
         panel1.setLayout(new GridBagLayout());
         panel1.setEnabled(true);
         panel1.setBorder(BorderFactory.createTitledBorder(null, "Registre", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
@@ -91,6 +93,8 @@ public class GUI_Menu  extends GUI {
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(ajouterClientButton, gbc);
+
+
         modifierDossierClientButton = new JButton();
         modifierDossierClientButton.setText("Modifier Dossier Client");
         modifierDossierClientButton.setToolTipText("Cliquer afin de modifier un dossier client dans le système");
@@ -184,49 +188,92 @@ public class GUI_Menu  extends GUI {
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panel1.add(spacer4, gbc);
-	        
-	     //JFrame initialisation
-	     frame.setContentPane(panel1);
-	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	     frame.pack();
-	     frame.setVisible(true);
-	}
 
-	private void retirerClientButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void ouvrirDossierClientButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void deconnexionButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void ajouterClientButtonClick() {
-		this.upperMenu.hide();
-		Registre.demandeCreationDossierClient(this);
-	}
-	private void modifierDossierClientButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void modifierUneRéservationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void ajouterRéservationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void retirerUneRéservationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void ajouterLocationButtonClick() {
-		RegistreLocation.debuterLocation(this);
-	}
-	private void réstituerLocationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void consulterLaListeDesButton(){
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
-	private void annulerUneRéservationButtonClick() {
-		JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
-	}
+        ajouterVehiculeButton = new JButton();
+        ajouterVehiculeButton.setText("Ajouter Vehicule");
+        ajouterVehiculeButton.setToolTipText("Cliquer afin d'ajouter un vehicule");
+        ajouterVehiculeButton.addActionListener(e -> ajouterVehiculeButtonClick());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 7;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel1.add(ajouterVehiculeButton, gbc);
+
+        retirerVehiculeButton = new JButton();
+        retirerVehiculeButton.setText("Retirer Vehicule");
+        retirerVehiculeButton.setToolTipText("Cliquer afin de retirer un vehicule");
+        retirerVehiculeButton.addActionListener(e -> retirerVehiculeButtonClick());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 7;
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel1.add(retirerVehiculeButton, gbc);
+
+        retirerVehiculeButton = new JButton();
+        retirerVehiculeButton.setText("Payment");
+        retirerVehiculeButton.setToolTipText("Cliquer afin de lancer le module du payement");
+        retirerVehiculeButton.addActionListener(e -> payementButtonClick());
+        gbc = new GridBagConstraints();
+        gbc.gridx = 8;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panel1.add(retirerVehiculeButton, gbc);
+
+
+        //JFrame initialisation
+        frame.setContentPane(panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private void retirerClientButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void ouvrirDossierClientButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void deconnexionButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void ajouterClientButtonClick() {
+        Registre.demandeCreationDossierClient(this);
+    }
+    private void modifierDossierClientButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void modifierUneRéservationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void ajouterRéservationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void retirerUneRéservationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void ajouterLocationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void réstituerLocationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void consulterLaListeDesButton(){
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void annulerUneRéservationButtonClick() {
+        JOptionPane.showMessageDialog(null, "Cette option est toujours en beta ", "Message administratif " , JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    private void ajouterVehiculeButtonClick() {
+        Registre.demandeAjoutVehicule(this);
+    }
+
+    private void retirerVehiculeButtonClick() {
+        Registre.demandeRetirerVehicule(this);
+    }
+
+    private void payementButtonClick() {
+        Registre.demandePayement(this);
+    }
+
 }
