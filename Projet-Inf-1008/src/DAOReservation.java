@@ -68,7 +68,7 @@ public class DAOReservation  {
 				if (IDLigne == id) {
 					scanner.close();
 					// Transforme notre string sous le format d'un client et le retourne
-					return formatCSVToLocation(currentLigne);
+					return formatCSVToReservation(currentLigne);
 				}
 
 			}
@@ -92,7 +92,7 @@ public class DAOReservation  {
 	 */
 	private void csvWrite(Reservation Reservation) {
 		try (FileWriter fichier = new FileWriter(NOMFICHIER, true)) {
-			fichier.append(formatCSVLocation(Reservation));
+			fichier.append(formatCSVReservation(Reservation));
 			fichier.flush();
 			fichier.close();
 		} catch (IOException e) {
@@ -107,12 +107,13 @@ public class DAOReservation  {
 	 * @param Reservation : reservation que l'on veut retourner sous forme formater
 	 * @return La Reservation sous forme formater en String pour la BD
 	 */
-	private String formatCSVLocation(Reservation reservation) {
+	private String formatCSVReservation(Reservation reservation) {
 		String reservationFormater = "";
 		reservationFormater += reservation.getNumResa() + SEPARATOR;
 		reservationFormater += reservation.getDateDebut() + SEPARATOR;
 		reservationFormater += reservation.getDateFin() + SEPARATOR;
-		reservationFormater += reservation.getID_client() + "\n";
+		reservationFormater += reservation.getID_client() +SEPARATOR;
+		reservationFormater += reservation.getCategorie() +"\n";
 		return reservationFormater;
 	}
 	
@@ -122,19 +123,15 @@ public class DAOReservation  {
 	 * @param stringReservation : String forme formater en String pour la BD Reservation d'une reservation
 	 * @return Reservation : reservation reformter dans sa forme reservation
 	 */
-	private Reservation formatCSVToLocation(String stringReservation) {
+	private Reservation formatCSVToReservation(String stringReservation) {
 		SimpleDateFormat formateurDate = new SimpleDateFormat(DATEFORMAT);
 		Reservation reservation = new Reservation();
-		String[] infoClient = stringReservation.split(SEPARATOR);
-		reservation.setNumResa(Integer.parseInt(infoClient[0]));
-		try {
-			reservation.setDateDebut(formateurDate.parse(infoClient[1]));
-			reservation.setDateFin(formateurDate.parse(infoClient[2]));
-		} catch (ParseException e) {
-			// LA BD est corrompue
-			e.printStackTrace();
-		}
-		reservation.setID_client(Integer.parseInt(infoClient[3]));
+		String[] infoReservation = stringReservation.split(SEPARATOR);
+		reservation.setNumResa(Integer.parseInt(infoReservation[0]));
+		reservation.setDateDebut(new Date(infoReservation[1]));
+		reservation.setDateFin(new Date(infoReservation[2]));
+		reservation.setID_client(Integer.parseInt(infoReservation[3]));
+		reservation.setCategorie(infoReservation[4]);
 		return reservation;
 	}
 	/**

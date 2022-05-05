@@ -42,6 +42,8 @@ public class RegistreLocation {
 		location.setClient(client);
 		//Get les vehicule dispo
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
+		ArrayList<Vehicule> vehic = new ArrayList<>();
+		vehic = daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
 		return daoCatalogueVehicule.getVehiculeDispo(res.getCategorie(),res.getDateDebut(),res.getDateFin());
 	}
 	

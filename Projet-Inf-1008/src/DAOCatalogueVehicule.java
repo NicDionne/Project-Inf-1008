@@ -199,7 +199,8 @@ public class DAOCatalogueVehicule {
 				// On get la ligne puis on retire la partie de gauche (après la ',')
 				currentLigne = scanner.nextLine();
 				// Si la catégorie du véhicule correspond
-				if (categorie.equals(currentLigne.split(",")[0])) {
+				if (categorie.equals(currentLigne.split(",")[3])) {
+					
 					// On vérifie que nos Date corresponde
 					if (verificationDate(currentLigne.split(",")[4], dateDebut, dateFin)) {
 						// Transforme notre string sous le format d'un vehicule
@@ -231,12 +232,12 @@ public class DAOCatalogueVehicule {
 		// On prend la date de début - la date d'ajourd'hui afin de calculer combien de
 		// charactère nous devons sauter
 		int coordonneDebut = converterMilisecondsToDay(dateDebut.getTime() - new Date().getTime());
-
+		
 		// On calcule l'intervalle de jour nécessaire de disponibilité
 		int coordonneFin = coordonneDebut + converterMilisecondsToDay(dateFin.getTime() - dateDebut.getTime());
-
 		// On itère vérifier sur les date du véhicule
 		for (int i = coordonneDebut; i < coordonneFin && i < dateFichier.length(); i++) {
+			
 			// Si le véhicule est sois indisponible ou en réparation
 			if (dateFichier.charAt(i) == '0' || dateFichier.charAt(i) == '3') {
 				toutEstGood = false;

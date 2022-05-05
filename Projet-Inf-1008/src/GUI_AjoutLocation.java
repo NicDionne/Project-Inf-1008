@@ -112,7 +112,7 @@ public class GUI_AjoutLocation extends GUI {
 		int noReser;
 		// Tant que l'utilisateur ne veut pas quitter ou qu'il entre de mauvaise réponse
 		do {
-			noReser = this.inputBoxInt("Veuillez entrer le numero de reservation ", "Ajout Location");
+			noReser = this.inputBoxInt("Veuillez entrer le numero de reservation \n un code pouvant marcher est 100000004.", "Ajout Location");
 			// On traite l'entrer
 			if (noReser == -1)// Si l'utilisateur veut annuler
 				{
@@ -138,7 +138,7 @@ public class GUI_AjoutLocation extends GUI {
 				else
 				{
 					toutEstBeau = false;
-					showMessage("Une erreur c'est produit nous avons pas pu trouver votre \n réservation avec le numéro de réservation entrer", "Message d'erreur");
+					showMessage("Une erreur c'est produit nous avons pas pu trouver votre \n réservation avec le numéro de réservation entrer, un numéro marchant : 100000004", "Message d'erreur");
 				}
 			}
 		} while (!toutEstBeau);

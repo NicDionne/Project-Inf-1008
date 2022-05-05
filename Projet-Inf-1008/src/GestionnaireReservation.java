@@ -38,8 +38,8 @@ public class GestionnaireReservation {
         
         //NICOLAS DIONNE
         //Si on ne trouve pas, on va chercher dans la mémoire persistente
-       
-        return null ;
+        DAOReservation daoReservation = new DAOReservation();
+        return daoReservation.get(numResa);
     }
     
     /** @author Kamil Mazan **/

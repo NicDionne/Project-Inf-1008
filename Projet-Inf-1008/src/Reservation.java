@@ -143,4 +143,12 @@ public class Reservation extends GestionnaireReservation {
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
+	/**
+	 * @author Nicolas Dionne
+	 * setter pour la catégorie
+	 * @param categorie : string catégorie du véhicule réserver
+	 */
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
 }
