@@ -32,13 +32,13 @@ public class GestionnaireClient {
 	}
 
 	/** Méthode getClient ayant pour but de récupérer le dossier client.
-	 * @author Quentin Tambone
-	 * @param ID_Client : un identifiant client
-	 * @return
+	 * @author Nicolas Dionne
+	 * @param ID_Client : int un identifiant client unique à 9 chiffres
+	 * @return Client : Le client obtenue à partir de l'iDclient, null si aucun
 	 */
 	public static Client getClient(int ID_Client){
-		// comment faire pour récupérer un client ici avec son identifiant ? il lui faut un ID_client
-		return null;
+		DAOClient daoCLient = new DAOClient();
+		return daoClient.get(ID_Client);
 	}
 
 }
