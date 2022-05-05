@@ -83,14 +83,20 @@ public class DAOCatalogueVehicule {
 	public void delete(Vehicule t) {
 		// TODO Auto-generated method stub
 	}
-
+	/**
+	 * @author Nicolas Dionne
+	 * 
+	 * Methode permetant de mettre a jour les dispo du vehicule
+	 * ELLE DOIT CHANGER LES DISPO POUR UNE MEME LONGUEUR DE DISPO SI LA BD EST COROMPUE NE PAS UTILISER AVANT D'AVOIR RÉPARER
+	 * 
+	 * @param vehicule vehicule que l'on souhaite metre a jour les info dans la mémoire persistente
+	 */
 	public void miseAJourDispoVehicule(Vehicule vehicule) {
 		String derniereLigne;
 		long dernierPointeurByte;
 		try {
 			// https://docs.oracle.com/javase/6/docs/api/java/io/RandomAccessFile.html
 			RandomAccessFile fichier = new RandomAccessFile(NOMFICHIER, "rw");
-
 			do {
 				// On garde une trace du dernier pointeur
 				dernierPointeurByte = fichier.getFilePointer();
@@ -103,7 +109,6 @@ public class DAOCatalogueVehicule {
 				// On regarde deplus si la ligne est null
 				if (derniereLigne == null || !formatCSVToVehicule(derniereLigne).getID().equals(vehicule.getID()))
 					continue;
-
 				// Si nous avons trouver la ligne
 				// Il reste à ce positionner au bon byte
 				// On calcul les byte utiliser pour stocker les infos du véhicule - byte pour
