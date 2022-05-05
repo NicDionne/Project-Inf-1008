@@ -147,8 +147,12 @@ public class Location {
 		 * @return String : Le contrat sous forme string
 		 */
 		public String getStringContrat() {
-			// TODO Auto-generated method stub
-			return null;
+			String contrat; 
+			contrat = "Contrat de location pour : " + client.getNom() + ", " + client.getPrenom() + "\n";
+			contrat += "Numéro d'identification du client : " + client.getIDClient() + "\n";
+			contrat += "Location pour le véhicule : " + vehicule.toString()+ "\n";
+			contrat += "Pour les date du " + this.getDateDebut() + " au " + this.getDateFin();
+			return contrat;
 		}
 		
 
