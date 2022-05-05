@@ -41,14 +41,14 @@ public class DAOLocation  {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 *         Methode permettant de getter un client dans la base de donner csv par
+	 *         Methode permettant de getter une location dans la base de donner csv par
 	 *         son identifiant. Cette methode peut prendre un certain nombre de
 	 *         temps avec un fichier volumineux comme elle traverse ligne par ligne
 	 *         de façon linéaire donc un temps possible de n, ou n est le nombre
 	 *         d'élement dans le fichier.
 	 * 
-	 * @param id : int IDentifiant a 9 chiffre unique de l'utilisateur
-	 * @return Client le client trouver correspondant au critères, null si aucun de
+	 * @param id : int IDentifiant a 9 chiffre unique de la location
+	 * @return Location le location trouver correspondant au critères, null si aucun de
 	 *         trouver
 	 */
 	public Location get(int id) {
@@ -162,7 +162,9 @@ public class DAOLocation  {
 		return -1;
 	}
 	/**
-	 * @author Nicolas Dionne Methode permetant d'incrementer notre generateur
+	 * @author Nicolas Dionne 
+	 * 
+	 * Methode permetant d'incrementer notre generateur
 	 *         d'identifiant
 	 * @param dernierID : int dernier ID sortit generer par le systeme, si
 	 *                  incertint, appeler la methode nextID()

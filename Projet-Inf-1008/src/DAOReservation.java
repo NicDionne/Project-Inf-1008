@@ -28,7 +28,7 @@ public class DAOReservation  {
 	 * @author Nicolas Dionne
 	 * 
 	 * @return int: l'ID location generer par la BD
-	 * @param location : location que l'on souhait enregistrer
+	 * @param reservation : reservation que l'on souhait enregistrer
 	 */
 	public int save(Reservation reservation) {
 		int iDReservation;
@@ -42,14 +42,14 @@ public class DAOReservation  {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 *         Methode permettant de getter un client dans la base de donner csv par
+	 *         Methode permettant de getter une reservation dans la base de donner csv par
 	 *         son identifiant. Cette methode peut prendre un certain nombre de
 	 *         temps avec un fichier volumineux comme elle traverse ligne par ligne
 	 *         de façon linéaire donc un temps possible de n, ou n est le nombre
 	 *         d'élement dans le fichier.
 	 * 
-	 * @param id : int IDentifiant a 9 chiffre unique de l'utilisateur
-	 * @return Client le client trouver correspondant au critères, null si aucun de
+	 * @param id : int IDentifiant a 9 chiffre unique de la réservation
+	 * @return Reservation la reservation trouver correspondant au critères, null si aucune de
 	 *         trouver
 	 */
 	public Reservation get(int id) {
@@ -88,7 +88,7 @@ public class DAOReservation  {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param Location : location que l'on souhait ecrire dans le fichier csv
+	 * @param Reservation : reservation que l'on souhait ecrire dans le fichier csv
 	 */
 	private void csvWrite(Reservation Reservation) {
 		try (FileWriter fichier = new FileWriter(NOMFICHIER, true)) {
@@ -104,8 +104,8 @@ public class DAOReservation  {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param Location : location que l'on veut retourner sous forme formater
-	 * @return La location sous forme formater en String pour la BD
+	 * @param Reservation : reservation que l'on veut retourner sous forme formater
+	 * @return La Reservation sous forme formater en String pour la BD
 	 */
 	private String formatCSVLocation(Reservation reservation) {
 		String reservationFormater = "";
@@ -119,8 +119,8 @@ public class DAOReservation  {
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param stringLocation : String forme formater en String pour la BD Location d'une location
-	 * @return Location : location reformter dans sa forme location
+	 * @param stringReservation : String forme formater en String pour la BD Reservation d'une reservation
+	 * @return Reservation : reservation reformter dans sa forme reservation
 	 */
 	private Reservation formatCSVToLocation(String stringReservation) {
 		SimpleDateFormat formateurDate = new SimpleDateFormat(DATEFORMAT);
