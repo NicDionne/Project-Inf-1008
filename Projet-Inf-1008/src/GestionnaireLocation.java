@@ -15,12 +15,14 @@ public class GestionnaireLocation {
 	    }
 	 
 	
-	/** méthode Restitution d'un vehicule 
+	/**@author Kamil MAZAN 
+	 * méthode Restitution d'un vehicule 
      * @param numLoc : un numéro de Location
      * @param DateRetour : la date du retour du vehicule
      * @param nbKm :Le nombre de Km sur le compteur lors de la restitution
      * @param SommeDegats : La somme a deduire sur la garentie a cause des degats
      */
+	  
 	
 	public void Restitution(int NumLoc,Date DateRetour,int nbKm,int SommeDegats) {
 		int Somme=200; 
@@ -39,13 +41,12 @@ public class GestionnaireLocation {
            	  Somme = Somme-SommeDegats;
            	  	//RemboursementGarentie(l,Somme); // Cas 11 = Remboursement de la garentie
            		 l=null;
-           		 System.out.println("Restitution reussi");
-           		 }
-             else System.out.println("Restitution non trouver");
-		 }
+           		 
+             }
+		}
 	}
 	
 	
 	
-	
 }
+

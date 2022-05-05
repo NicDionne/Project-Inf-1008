@@ -1,3 +1,4 @@
+import java.sql.Date;
 import java.util.ArrayList;
 
 public class RegistreLocation {
@@ -50,4 +51,43 @@ public class RegistreLocation {
 		//Contrat de location
 		return "Numéro de Location : "+ noLocation+ " \n" +location.toString();
 	}
+	
+	/**@author Kamil MAZAN 
+	 * méthode Restitution d'un vehicule 
+     * @param numLoc : un numéro de Location
+     * @param DateRetour : la date du retour du vehicule
+     * @param nbKm :Le nombre de Km sur le compteur lors de la restitution
+     * @param SommeDegats : La somme a deduire sur la garentie a cause des degats
+     */
+	  
+	
+	public void Restitution(int NumLoc,Date DateRetour,int nbKm,int SommeDegats) {
+		int Somme=200; 
+		DAOLocation daoCatalogueLocation = new DAOLocation();
+		Location l =  new Location();
+		l = daoCatalogueLocation.get(NumLoc);
+		
+		//On vérifie si il y'a du retard
+           	  if (DateRetour.getTime()> l.getDateFin().getTime()) {
+           		long diff = DateRetour.getTime() - l.getDateFin().getTime();
+           		int diffrence = Long.valueOf(diff).intValue();
+        // Il y'a du retard on rajoute 10$ pour chaque jour de retard   		
+                Somme=Somme-(diffrence*10);
+           	  }
+        //On vérifie si le nombre de KM autorisé est depasser
+           	  else if (nbKm-l.getNbKmDebut()>500){
+           		int Km = (nbKm-l.getNbKmDebut())/100;
+        // Il y'a des Km fait en trop on rajoute 10$ pour chaque 100 KM depasé
+           		  Somme = Somme-Km*10;
+           	  }
+        // La somme finale a retirer sur la garentie
+           	  Somme = Somme-SommeDegats;
+        //RemboursementGarentie(l,Somme); // Cas 11 = Remboursement de la garentie
+        //Suppression de la location
+           	daoCatalogueLocation.delete(l);
+           		 
+             }
+
 }
+
+

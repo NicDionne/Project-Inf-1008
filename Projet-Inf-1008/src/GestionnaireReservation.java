@@ -1,14 +1,19 @@
-/** @author Quentin Tambone **/
+
 import java.util.ArrayList;
+
 
 /** représente une réservation **/
 public class GestionnaireReservation {
     ArrayList<Reservation> listeReservation ;
+    
+    /** @author Quentin Tambone **/
 
     /** Constructeur **/
     public GestionnaireReservation(){
         listeReservation = new ArrayList<>() ;
     }
+    
+    /** @author Quentin Tambone **/
 
     /** méthode enregistrer qui enregistre une réservation
      * @param reservation : une reservation
@@ -17,7 +22,7 @@ public class GestionnaireReservation {
         this.listeReservation.add(reservation) ;
     }
 
-    /**@author Quentin Tambon
+    /**@author Quentin Tambone
      * 
      *  méthode getReservation get une réservation
      * @param numResa : un numéro de réservation
@@ -32,6 +37,8 @@ public class GestionnaireReservation {
         return null ;
     }
     
+    /** @author Kamil Mazan **/
+    
     /** méthode AnnulerReservation annule une réservation
      * @param numResa : un numéro de réservation
      */
@@ -39,11 +46,9 @@ public class GestionnaireReservation {
     public void AnnulerReservation(int numResa) {
     	  for(Reservation r : listeReservation){
               if(r.getNumResa().equals(numResa)){
-            	//RemboursementReservation(r); // Cas 10 = Remboursement de la reservation
+           //RemboursementReservation(r); // Cas 10 = Remboursement de la reservation
             	  r= null;
-            	  System.out.println("Annulation de reservation reussi");
               }
-              else System.out.println("Reservation non trouvé");
           }
     }
     

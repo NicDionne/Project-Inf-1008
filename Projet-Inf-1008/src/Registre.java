@@ -109,4 +109,34 @@ public class Registre {
 		gui.toUpperMenu();
 	}
 
+	/** Méthode AnnulerReservaion ayant pour but d'annuler une reservation.
+	 * @author Kamil Mazan
+	 * @param Numres : Numero de reservation
+	 * @param g : une gestionnaire de réservation
+	 * @param gui : GUI du menu upper
+	
+	 */
+	 public static void AnnulerUneReservation(int numRes, GestionnaireReservation g, GUI gui) {
+		 g.AnnulerReservation(numRes);
+		 gui.showMessage("votre reservation à été annuler", "Message système") ;
+		 gui.toUpperMenu();
+		 
+	 }
+	 
+	 /** Méthode Restitution ayant pour but de restituer une voiture apres une location.
+	    * @author Kamil Mazan
+		* @param NumLoc : Numero de Location
+		* @param DateRetour : date de retour du vehicule
+		* @param nbKm : nombre de km sur la voiture
+		* @param SommeDegats : une somme de degats constater par le préposé
+		* @param l : une gestionnaire de location
+		* @param gui : GUI du menu upper
+		 */
+	
+	 public void RestitutionVehicule(int NumLoc,Date DateRetour,int nbKm,int SommeDegats, GestionnaireLocation l, GUI gui) {
+		 l.Restitution(NumLoc, null, nbKm, SommeDegats);
+		 gui.showMessage("Restitution du véhicule réussi" , "Message système") ;
+		 gui.toUpperMenu();
+	 }
+	 
 }
