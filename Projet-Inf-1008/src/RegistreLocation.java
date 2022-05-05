@@ -20,6 +20,8 @@ public class RegistreLocation {
 	/**
 	 * @author Nicolas Dionne
 	 * 
+	 * Methode contrôleur pour le cas Ajouter une location
+	 * 
 	 * @param noReservation : int numéro de réservation de la réservation 
 	 * @return ArrayList<Vehicule> : Liste des véhicule répondant au crtières établis par la réservation
 	 */

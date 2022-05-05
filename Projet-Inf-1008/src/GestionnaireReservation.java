@@ -22,18 +22,23 @@ public class GestionnaireReservation {
         this.listeReservation.add(reservation) ;
     }
 
-    /**@author Quentin Tambone
+    /**@author Quentin Tambone et Nicolas Dionne
      * 
      *  méthode getReservation get une réservation
      * @param numResa : un numéro de réservation
      */
     public Reservation getReservation(Integer numResa){
-    	//On cherche en memoire vive...
+    	//QUENTIN TAMBONE
+    	//On cherche en memoire vive
         for(Reservation r : listeReservation){
             if(r.getNumResa().equals(numResa)){
                 return r ;
             }
         }
+        
+        //NICOLAS DIONNE
+        //Si on ne trouve pas, on va chercher dans la mémoire persistente
+       
         return null ;
     }
     

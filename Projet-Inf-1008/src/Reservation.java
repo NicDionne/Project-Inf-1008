@@ -22,8 +22,16 @@ public class Reservation extends GestionnaireReservation {
         this.dateDebut = debut ;
         this.dateFin = fin ;
     }
+    /**
+     * @author Nicolas Dionne
+     * 
+     * Constructeur vide pour réservation
+     */
+    public Reservation() {
 
-    /** méthode creerReservation qui créer une instance reservation
+	}
+
+	/** méthode creerReservation qui créer une instance reservation
      * @param categorie : une catégorie de véhicule
      * @param dateDebut : une de date de début
      * @param dateFin : une date de fin
@@ -32,7 +40,7 @@ public class Reservation extends GestionnaireReservation {
     public static Reservation creerReservation(String categorie, Date dateDebut, Date dateFin){
         return new Reservation(categorie, dateDebut, dateFin) ;
     }
-
+    
 
     /** méthode getNumResa qui récupère le numéro de réservation
      * @return le numéro de réservation
@@ -74,7 +82,16 @@ public class Reservation extends GestionnaireReservation {
     
    
     //Accesseur 
-    
+    /**
+     * @author Nicolas Dionne
+     * 
+     * setter pour le numéro de réservation
+     * @param id : int numéro de réservation
+     */
+    public void setNumResa(int id)
+    {
+    	numResa = id;
+    }
     /**@author Nicolas Dionne
      * 
      * getter pour la categorie vehicule 
@@ -109,4 +126,21 @@ public class Reservation extends GestionnaireReservation {
     public int getID_client(){
         return ID_client ;
     }
+    /**
+	 * @author Nicolas Dionne
+	 * setter pour la date de debut
+	 * @param dateDebut : Date de debut de la réservation
+	 */
+	public void setDateDebut(Date dateDebut)
+	{
+		this.dateDebut = dateDebut;
+	}
+	/**
+	 * @author Nicolas Dionne
+	 * setter pour la date de fin
+	 * @param dateDebut : Date de debut de la réservation
+	 */
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
 }

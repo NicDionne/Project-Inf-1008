@@ -63,7 +63,7 @@ public class GUI {
 			return entrer;
 			}
 			catch(Exception e) {
-				showMessage("Un mauvaise entrer a ete fait, Seul nombre entier sont accepter","Erreur");
+				showMessage("Un mauvaise entrer a ete fait, Seul nombre entier à moin de 10 chiffres sont accepter","Erreur");
 			}
 		}
 		
