@@ -150,7 +150,8 @@ public class Location {
 			String contrat; 
 			contrat = "Contrat de location pour : " + client.getNom() + ", " + client.getPrenom() + "\n";
 			contrat += "Numéro d'identification du client : " + client.getIDClient() + "\n";
-			contrat += "Location pour le véhicule : " + vehicule.toString()+ "\n";
+			contrat += "Location pour le véhicule : " + vehicule.getID()+ "\n";
+			contrat += "\t Categorie : " + vehicule.getCategorie() + "\n"; 
 			contrat += "Pour les date du " + this.getDateDebut() + " au " + this.getDateFin();
 			return contrat;
 		}

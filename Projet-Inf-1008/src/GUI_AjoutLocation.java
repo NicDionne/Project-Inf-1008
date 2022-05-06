@@ -88,9 +88,8 @@ public class GUI_AjoutLocation extends GUI {
 			//On appelle la méthode du registre traitant la partie 4 du cas 7 Ajouter une location
 			this.showMessage(RegistreLocation.confirmationLocation(), "Confirmation de location");
 		
-		//Si l'utilisateur veut annuler
-		else 
-			this.toUpperMenu();
+		//Fin du cas d'utilisation
+		this.toUpperMenu();
 	}
 
 	/**

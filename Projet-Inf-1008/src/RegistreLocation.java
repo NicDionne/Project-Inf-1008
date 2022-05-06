@@ -72,7 +72,7 @@ public class RegistreLocation {
 		DAOLocation daoCatalogueLocation = new DAOLocation();
 		int noLocation = daoCatalogueLocation.save(location);
 		//Contrat de location
-		return "Numéro de Location : "+ noLocation+ " \n" +location.toString();
+		return "Numéro de Location : "+ noLocation+ " \n" +location.getStringContrat();
 	}
 	
 	
