@@ -1,5 +1,11 @@
+package interface_Utilisateur;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+
+import domaine.Registre;
+import domaine.RegistreLocation;
+
 import java.awt.*;
 import javax.swing.UIManager.*;
 /**

@@ -1,3 +1,5 @@
+package domaine;
+
 
 public class Client {
 	private static int compteurClient =0; 

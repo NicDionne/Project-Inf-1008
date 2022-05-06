@@ -1,5 +1,10 @@
+package domaine;
+
 import java.sql.Date;
 import java.util.ArrayList;
+
+import interface_Utilisateur.GUI;
+import interface_Utilisateur.GUI_AjoutLocation;
 
 public class RegistreLocation {
 	private static Location location;

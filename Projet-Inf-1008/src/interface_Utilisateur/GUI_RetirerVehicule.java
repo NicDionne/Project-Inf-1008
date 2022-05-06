@@ -1,26 +1,34 @@
-/**
- * @author Ramy
- */
+package interface_Utilisateur;
+
 
 import javax.swing.*;
+
+import domaine.Registre;
+
 import java.awt.*;
+import java.io.File;
+import java.util.List;
 
 
-public class GUI_PaymentMode extends GUI { 
+import project.vehicule.CsvFileHelper;
+import project.vehicule.impl.VehiculeDAOImpl;
+import project.vehicule.impl.VehiculeImpl;
+
+public class GUI_RetirerVehicule extends GUI { 
 	
 	final JPanel panel1 = new JPanel();
-	private JTextField textFieldMontant;
 	
-	private JButton confirmerModePayementButton;
-	private JButton annulerButton;
 	String[] tab_contact;
 	DefaultComboBoxModel modele;
 	JComboBox liste_contact;
+	private JButton confirmerAjoutButton;
+	private JButton annulerButton;
+	    
 	
-	public GUI_PaymentMode(GUI upperMenu)
+	public GUI_RetirerVehicule(GUI upperMenu)
 	{ 	
 		//Initialisation des variables 
-		 frame = new JFrame("Formulaire Mode de payement");
+		 frame = new JFrame("Formulaire Supression vehicule");
 		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
@@ -44,44 +52,25 @@ public class GUI_PaymentMode extends GUI {
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(toolBar1, gbc);
 	        
-	        panel1.setBorder(BorderFactory.createLineBorder(Color.red));
 	        
-	        textFieldMontant = new JTextField();
-	        textFieldMontant.setText("450 CAD");
-	        textFieldMontant.setEnabled(false);
-	        Font textFieldMontantFont = new Font(null, -1, 16);
-	        if (textFieldMontantFont != null) textFieldMontant.setFont(textFieldMontantFont);
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
 	        gbc.gridy = 1;
 	        gbc.gridwidth = 8;
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        panel1.add(textFieldMontant, gbc);
-	        final JLabel labelMontant = new JLabel();
-	        Font labelMontantFont = new Font(null, -1, 16);
-	        if (labelMontantFont != null) labelMontant.setFont(labelMontantFont);
-	        labelMontant.setHorizontalAlignment(11);
-	        labelMontant.setText("Montant a payer :");
-	        gbc = new GridBagConstraints();
-	        gbc.gridx = 1;
-	        gbc.gridy = 1;
-	        gbc.anchor = GridBagConstraints.EAST;
-	        panel1.add(labelMontant, gbc);
-	        
-			// Liste mode de payement
-	      
-	        gbc = new GridBagConstraints();
-	        gbc.gridx = 9;
-	        gbc.gridy = 2;
-	        gbc.gridwidth = 8;
-	        gbc.anchor = GridBagConstraints.WEST;
-	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        
-			tab_contact = new String[3];
-			tab_contact[0] = new String("Comptant");
-			tab_contact[1] = new String("Carte debit");
-			tab_contact[2] = new String("Carte Credit");
+	        String FILE_NAME = "src/test/db_vehicules.csv";
+	        File file = CsvFileHelper.getResource(FILE_NAME);
+	        VehiculeDAOImpl  vehiculeDao = new VehiculeDAOImpl(file);
+	        List<VehiculeImpl> listVehicule = vehiculeDao.findAllVehicules();
+			
+			tab_contact = new String[listVehicule.size()];
+			int index = 0;
+			 for(VehiculeImpl vehicule : listVehicule) {
+				 tab_contact[index] = vehicule.toString();
+				 index++;
+			 }
+			
 			modele = new DefaultComboBoxModel(tab_contact);
 			liste_contact = new JComboBox(modele);
 			panel1.add(liste_contact, gbc);
@@ -92,21 +81,22 @@ public class GUI_PaymentMode extends GUI {
 		    labelMode.setText("Mode de payement :");
 		    gbc = new GridBagConstraints();
 		    gbc.gridx = 1;
-		    gbc.gridy = 2;
+		    gbc.gridy = 1;
 		    gbc.anchor = GridBagConstraints.EAST;
 		    panel1.add(labelMode, gbc);
-		    
-	        confirmerModePayementButton = new JButton();
-	        confirmerModePayementButton.setText("Confirmer Mode payement");
-	        confirmerModePayementButton.addActionListener(e -> confirmerModePayementButtonClick());
+	        
+	        
+
+	        confirmerAjoutButton = new JButton();
+	        confirmerAjoutButton.setText("Confirmer Suppression");
+	        confirmerAjoutButton.addActionListener(e -> confirmerSuppressionButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
 	        gbc.gridy = 12;
 	        gbc.gridwidth = 8;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        panel1.add(confirmerModePayementButton, gbc);
-	        
-	        
+	        panel1.add(confirmerAjoutButton, gbc);
+
 	        annulerButton = new JButton();
 	        annulerButton.setText("Annuler");
 	        annulerButton.addActionListener(e -> annulerButtonClick());
@@ -150,9 +140,9 @@ public class GUI_PaymentMode extends GUI {
 	 * 
 	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer ajout"
 	 */
-		private void confirmerModePayementButtonClick()
+		private void confirmerSuppressionButtonClick()
 		{
-			Registre.ConfirmerModePayement(this, modele.getSelectedItem().toString());
+			Registre.SupressionVehicule(this,modele.getSelectedItem().toString());
 		}
 		/**
 		 * 

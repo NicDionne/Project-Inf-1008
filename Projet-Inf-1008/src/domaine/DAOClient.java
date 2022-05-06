@@ -1,58 +1,57 @@
+package domaine;
 
+import java.util.ArrayList;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.text.Format;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
-public class DAOReservation  {
-	// Nom du fichier utiliser
-	private static final String NOMFICHIER = "DBReservation.csv";
-	private static final String SEPARATOR = ",";
-	private static final String DATEFORMAT = "MM/dd/yyyy";
+public class DAOClient {
 
-	public DAOReservation() {
+	// Nom du fichier utiliser
+	private static final String NOMFICHIER = "DBClient.csv";
+	private static final String SEPARATOR = ",";
+
+	public DAOClient() {
 
 	}
 
 	/**
 	 * Methode ayant pour but de sauvegarder dans la base de donner les informations
-	 * sur une réservation
+	 * sur un client
 	 * 
 	 * @author Nicolas Dionne
 	 * 
-	 * @return int: l'ID location generer par la BD
-	 * @param reservation : reservation que l'on souhait enregistrer
+	 * @return int: l'ID client generer par la BD
+	 * @param client : client que l'on souhait enregistrer
 	 */
-	public int save(Reservation reservation) {
-		int iDReservation;
-		iDReservation = nextID();
-		reservation.setNumResa(iDReservation);
-		csvWrite(reservation);
-		incrementNextID(iDReservation);
-		return iDReservation;
+	public int save(Client client) {
+		int IDClient;
+		IDClient = nextID();
+		client.setIDClient(IDClient);
+		csvWrite(client);
+		incrementNextID(IDClient);
+		return IDClient;
 	}
 
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 *         Methode permettant de getter une reservation dans la base de donner csv par
+	 *         Methode permettant de getter un client dans la base de donner csv par
 	 *         son identifiant. Cette methode peut prendre un certain nombre de
 	 *         temps avec un fichier volumineux comme elle traverse ligne par ligne
 	 *         de façon linéaire donc un temps possible de n, ou n est le nombre
 	 *         d'élement dans le fichier.
 	 * 
-	 * @param id : int IDentifiant a 9 chiffre unique de la réservation
-	 * @return Reservation la reservation trouver correspondant au critères, null si aucune de
+	 * @param id : int IDentifiant a 9 chiffre unique de l'utilisateur
+	 * @return Client le client trouver correspondant au critères, null si aucun de
 	 *         trouver
 	 */
-	public Reservation get(int id) {
+	public Client get(int id) {
 		int IDLigne;
 		String currentLigne; // Ligne en cours de lecture
 		try {
@@ -68,7 +67,7 @@ public class DAOReservation  {
 				if (IDLigne == id) {
 					scanner.close();
 					// Transforme notre string sous le format d'un client et le retourne
-					return formatCSVToReservation(currentLigne);
+					return formatCSVToClient(currentLigne);
 				}
 
 			}
@@ -79,20 +78,18 @@ public class DAOReservation  {
 		return null;
 	}
 
+	public void delete(Client client) {
 
-
-	public void delete(Reservation Reservation) {
-		// TODO Auto-generated method stub
-		
 	}
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param Reservation : reservation que l'on souhait ecrire dans le fichier csv
+	 * @param client : client que l'on souhait ecrire dans le fichier csv
 	 */
-	private void csvWrite(Reservation Reservation) {
+	private void csvWrite(Client client) {
 		try (FileWriter fichier = new FileWriter(NOMFICHIER, true)) {
-			fichier.append(formatCSVReservation(Reservation));
+			fichier.append(formatCSVClient(client));
 			fichier.flush();
 			fichier.close();
 		} catch (IOException e) {
@@ -100,40 +97,46 @@ public class DAOReservation  {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param Reservation : reservation que l'on veut retourner sous forme formater
-	 * @return La Reservation sous forme formater en String pour la BD
+	 * @param client : Client que l'on veut retourner sous forme formater
+	 * @return Le client sous forme formater en String pour la BD
 	 */
-	private String formatCSVReservation(Reservation reservation) {
-		String reservationFormater = "";
-		reservationFormater += reservation.getNumResa() + SEPARATOR;
-		reservationFormater += reservation.getDateDebut() + SEPARATOR;
-		reservationFormater += reservation.getDateFin() + SEPARATOR;
-		reservationFormater += reservation.getID_client() +SEPARATOR;
-		reservationFormater += reservation.getCategorie() +"\n";
-		return reservationFormater;
+	private String formatCSVClient(Client client) {
+		String clientFormater = "";
+		clientFormater += client.getIDClient() + SEPARATOR;
+		clientFormater += client.getNom() + SEPARATOR;
+		clientFormater += client.getPrenom() + SEPARATOR;
+		clientFormater += client.getAdresse() + SEPARATOR;
+		clientFormater += client.getNoTelDom() + SEPARATOR;
+		clientFormater += client.getNoTelMob() + SEPARATOR;
+		clientFormater += client.getNoPermis() + SEPARATOR;
+		clientFormater += client.getNoCarteBancaire() + "\n";
+		return clientFormater;
 	}
-	
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
-	 * @param stringReservation : String forme formater en String pour la BD Reservation d'une reservation
-	 * @return Reservation : reservation reformter dans sa forme reservation
+	 * @param client : String forme formater en String pour la BD Client du Client
+	 * @return Client : Le client reformter dans sa forme client
 	 */
-	private Reservation formatCSVToReservation(String stringReservation) {
-		SimpleDateFormat formateurDate = new SimpleDateFormat(DATEFORMAT);
-		Reservation reservation = new Reservation();
-		String[] infoReservation = stringReservation.split(SEPARATOR);
-		reservation.setNumResa(Integer.parseInt(infoReservation[0]));
-		reservation.setDateDebut(new Date(infoReservation[1]));
-		reservation.setDateFin(new Date(infoReservation[2]));
-		reservation.setID_client(Integer.parseInt(infoReservation[3]));
-		reservation.setCategorie(infoReservation[4]);
-		return reservation;
+	private Client formatCSVToClient(String stringClient) {
+		Client client = new Client();
+		String[] infoClient = stringClient.split(SEPARATOR);
+		client.setIDClient(Integer.parseInt(infoClient[0]));
+		client.setNom(infoClient[1]);
+		client.setPrenom(infoClient[2]);
+		client.setAdresse(infoClient[3]);
+		client.setNoTelDom(infoClient[4]);
+		client.setNoTelMob(infoClient[5]);
+		client.setNoPermis(infoClient[6]);
+		client.setNoCarteBancaire(infoClient[7]);
+		return client;
 	}
+
 	/**
 	 * @author Nicolas Dionne
 	 * 
@@ -157,6 +160,7 @@ public class DAOReservation  {
 		}
 		return -1;
 	}
+
 	/**
 	 * @author Nicolas Dionne Methode permetant d'incrementer notre generateur
 	 *         d'identifiant

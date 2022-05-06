@@ -1,3 +1,5 @@
+package domaine;
+
 /** @author Quentin Tambone **/
 import java.util.Date;
 import java.util.Random;

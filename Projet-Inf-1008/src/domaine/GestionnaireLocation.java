@@ -1,3 +1,5 @@
+package domaine;
+
 /** @author Kamil MAZAN **/
 import java.sql.Date;
 import java.util.ArrayList;

@@ -1,32 +1,27 @@
-/**
- * @author Ramy
- */
+package interface_Utilisateur;
+
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.List;
 
 import javax.swing.text.MaskFormatter;
 
-import project.vehicule.CsvFileHelper;
-import project.vehicule.impl.VehiculeDAOImpl;
-import project.vehicule.impl.VehiculeImpl;
+import domaine.Registre;
 
-public class GUI_PaymentProcessConfirmation extends GUI { 
+public class GUI_PaymentProcessComptant extends GUI { 
 	
 	final JPanel panel1 = new JPanel();
-
+	private JTextField textFieldMontant;
+	
 	private JButton confirmerAjoutButton;
 	private JButton annulerButton;
 	    
-	
-	public GUI_PaymentProcessConfirmation(GUI upperMenu, String recuTxt)
+	public GUI_PaymentProcessComptant(GUI upperMenu)
 	{ 	
 		//Initialisation des variables 
-		 frame = new JFrame("Confirmation et generation recu");
+		 frame = new JFrame("Payement Comptant");
 		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
@@ -49,41 +44,47 @@ public class GUI_PaymentProcessConfirmation extends GUI {
 	        gbc.gridy = 9;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(toolBar1, gbc);
-	        
-	        
+
+	        textFieldMontant = new JTextField();
+	        textFieldMontant.setText("450 CAD");
+	        textFieldMontant.setEnabled(false);
+	        Font textFieldMontantFont = new Font(null, -1, 16);
+	        if (textFieldMontantFont != null) textFieldMontant.setFont(textFieldMontantFont);
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
 	        gbc.gridy = 1;
 	        gbc.gridwidth = 8;
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        
-	        JTextArea textArea = new JTextArea(recuTxt, 10, 20);
-	        JScrollPane scrollPane = new JScrollPane(textArea);
-	        textArea.setEditable(false); 
+	        panel1.add(textFieldMontant, gbc);
+	        final JLabel labelMontant = new JLabel();
+	        Font labelMontantFont = new Font(null, -1, 16);
+	        if (labelMontantFont != null) labelMontant.setFont(labelMontantFont);
+	        labelMontant.setHorizontalAlignment(11);
+	        labelMontant.setText("Montant a payer :");
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
-	        gbc.gridy = 10;
-	        gbc.fill = GridBagConstraints.VERTICAL;
-	        panel1.add(textArea, gbc);
-	        panel1.add(scrollPane, gbc);
+	        gbc.gridy = 1;
+	        gbc.anchor = GridBagConstraints.EAST;
+	        panel1.add(labelMontant, gbc);
 	        
 	        confirmerAjoutButton = new JButton();
-	        confirmerAjoutButton.setText("print Recu");
-	        confirmerAjoutButton.addActionListener(e -> confirmerPrintButtonClick());
+	        confirmerAjoutButton.setText("Confirmer Payement");
+	        confirmerAjoutButton.addActionListener(e -> confirmerPayementButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
-	        gbc.gridy = 12;
+	        gbc.gridy = 10;
 	        gbc.gridwidth = 8;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(confirmerAjoutButton, gbc);
-
+	        
+	        
 	        annulerButton = new JButton();
-	        annulerButton.setText("Envoyer Recu");
-	        annulerButton.addActionListener(e -> envoiRecuButtonClick());
+	        annulerButton.setText("Annuler Payement");
+	        annulerButton.addActionListener(e -> annulerButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
-	        gbc.gridy = 12;
+	        gbc.gridy = 10;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(annulerButton, gbc);
 	        final JPanel spacer1 = new JPanel();
@@ -121,16 +122,16 @@ public class GUI_PaymentProcessConfirmation extends GUI {
 	 * 
 	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer ajout"
 	 */
-		private void confirmerPrintButtonClick()
+		private void confirmerPayementButtonClick()
 		{
-			Registre.confirmerPrint(this);
+			Registre.ConfirmerPayementComptant(this);
 		}
 		/**
 		 * 
 		 * Event se produisant lorsqu'on presse sur le bouton : "Annuler"
 		 */
-		private void envoiRecuButtonClick() {
-			Registre.confirmerEnvoiRecu(this);
+		private void annulerButtonClick() {
+			this.toUpperMenu();
 		}
 		
 		

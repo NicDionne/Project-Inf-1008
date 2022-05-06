@@ -1,9 +1,14 @@
+package interface_Utilisateur;
+
 /**
  * 
  * @author Ramy
  *
  */ 
 import javax.swing.*;
+
+import domaine.Registre;
+
 import java.awt.*;
 
 public class GUI_AjoutVehicule extends GUI { 

@@ -1,3 +1,5 @@
+package domaine;
+
 
 
 public class GestionnaireClient {

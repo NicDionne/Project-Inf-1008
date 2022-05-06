@@ -1,3 +1,5 @@
+package interface_Utilisateur;
+
 /**
  * @author Ramy
  */ 
@@ -8,10 +10,11 @@ import java.text.ParseException;
 
 import javax.swing.text.MaskFormatter;
 
-public class GUI_PaymentProcessCredit extends GUI { 
+import domaine.Registre;
+
+public class GUI_PaymentProcessDebit extends GUI { 
 	
 	final JPanel panel1 = new JPanel();
-	
 	private JTextField textFieldMontant;
 	private JTextField textFieldNumCarte;
 	private JTextField textFieldNumEndoCarte;
@@ -26,10 +29,10 @@ public class GUI_PaymentProcessCredit extends GUI {
 	private JButton confirmerAjoutButton;
 	private JButton annulerButton;
 	    
-	public GUI_PaymentProcessCredit(GUI upperMenu)
+	public GUI_PaymentProcessDebit(GUI upperMenu)
 	{ 	
 		//Initialisation des variables 
-		 frame = new JFrame("Formulaire Saisie information carte de credit");
+		 frame = new JFrame("Formulaire Saisie information carte de debit");
 		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
@@ -76,7 +79,6 @@ public class GUI_PaymentProcessCredit extends GUI {
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelMontant, gbc);
 	        
-	        
 	    	textFieldNumCarte = new JTextField();
 	        Font textFieldNumCarteFont = new Font(null, -1, 16);
 	        if (textFieldNumCarteFont != null) textFieldNumCarte.setFont(textFieldNumCarteFont);
@@ -91,7 +93,7 @@ public class GUI_PaymentProcessCredit extends GUI {
 	        Font labelNumCarteFont = new Font(null, -1, 16);
 	        if (labelNumCarteFont != null) labelNumCarte.setFont(labelNumCarteFont);
 	        labelNumCarte.setHorizontalAlignment(11);
-	        labelNumCarte.setText("Num Carte Credit :");
+	        labelNumCarte.setText("Num Carte Debit :");
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
 	        gbc.gridy = 2;
@@ -112,7 +114,7 @@ public class GUI_PaymentProcessCredit extends GUI {
 	        Font labelNumEndoCarteFont = new Font(null, -1, 16);
 	        if (labelNumEndoCarteFont != null) labelNumEndoCarte.setFont(labelNumEndoCarteFont);
 	        labelNumEndoCarte.setHorizontalAlignment(11);
-	        labelNumEndoCarte.setText("Num Endo Carte Credit :");
+	        labelNumEndoCarte.setText("Num Endo Carte Debit :");
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
 	        gbc.gridy = 3;
@@ -322,7 +324,7 @@ public class GUI_PaymentProcessCredit extends GUI {
 	 */
 		private void confirmerPayementButtonClick()
 		{
-			Registre.ConfirmerPayementParCarteCredit(this, textFieldMontant.getText(), textFieldNumCarte.getText(), textFieldNomTitulaire.getText(), textFieldPrenomTitulaire.getText(), textFieldRue.getText(),textFieldVille.getText(),
+			Registre.ConfirmerPayementParCarteDebit(this, textFieldMontant.getText(), textFieldNumCarte.getText(), textFieldNomTitulaire.getText(), textFieldPrenomTitulaire.getText(), textFieldRue.getText(),textFieldVille.getText(),
 					textFieldCodePostale.getText(), textFieldProvince.getText(),textFieldNumApp.getText());
 		}
 		/**

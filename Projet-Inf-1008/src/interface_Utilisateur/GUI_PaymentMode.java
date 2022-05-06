@@ -1,26 +1,28 @@
-/**
- * @author Ramy
- */
+package interface_Utilisateur;
+
 
 import javax.swing.*;
+
+import domaine.Registre;
+
 import java.awt.*;
-import java.text.NumberFormat;
-import java.text.ParseException;
 
-import javax.swing.text.MaskFormatter;
 
-public class GUI_PaymentProcessComptant extends GUI { 
+public class GUI_PaymentMode extends GUI { 
 	
 	final JPanel panel1 = new JPanel();
 	private JTextField textFieldMontant;
 	
-	private JButton confirmerAjoutButton;
+	private JButton confirmerModePayementButton;
 	private JButton annulerButton;
-	    
-	public GUI_PaymentProcessComptant(GUI upperMenu)
+	String[] tab_contact;
+	DefaultComboBoxModel modele;
+	JComboBox liste_contact;
+	
+	public GUI_PaymentMode(GUI upperMenu)
 	{ 	
 		//Initialisation des variables 
-		 frame = new JFrame("Payement Comptant");
+		 frame = new JFrame("Formulaire Mode de payement");
 		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
@@ -28,7 +30,7 @@ public class GUI_PaymentProcessComptant extends GUI {
 	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     frame.pack();
 	     frame.setVisible(true);
-	     panel1.setLayout(new GridBagLayout());
+	      panel1.setLayout(new GridBagLayout());
 	      
 	        GridBagConstraints gbc;
 	        gbc = new GridBagConstraints();
@@ -43,7 +45,9 @@ public class GUI_PaymentProcessComptant extends GUI {
 	        gbc.gridy = 9;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(toolBar1, gbc);
-
+	        
+	        panel1.setBorder(BorderFactory.createLineBorder(Color.red));
+	        
 	        textFieldMontant = new JTextField();
 	        textFieldMontant.setText("450 CAD");
 	        textFieldMontant.setEnabled(false);
@@ -67,23 +71,50 @@ public class GUI_PaymentProcessComptant extends GUI {
 	        gbc.anchor = GridBagConstraints.EAST;
 	        panel1.add(labelMontant, gbc);
 	        
-	        confirmerAjoutButton = new JButton();
-	        confirmerAjoutButton.setText("Confirmer Payement");
-	        confirmerAjoutButton.addActionListener(e -> confirmerPayementButtonClick());
+			// Liste mode de payement
+	      
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
-	        gbc.gridy = 10;
+	        gbc.gridy = 2;
+	        gbc.gridwidth = 8;
+	        gbc.anchor = GridBagConstraints.WEST;
+	        gbc.fill = GridBagConstraints.HORIZONTAL;
+	        
+			tab_contact = new String[3];
+			tab_contact[0] = new String("Comptant");
+			tab_contact[1] = new String("Carte debit");
+			tab_contact[2] = new String("Carte Credit");
+			modele = new DefaultComboBoxModel(tab_contact);
+			liste_contact = new JComboBox(modele);
+			panel1.add(liste_contact, gbc);
+			final JLabel labelMode = new JLabel();
+		    Font labelModeFont = new Font(null, -1, 16);
+		    if (labelModeFont != null) labelMode.setFont(labelModeFont);
+		    labelMode.setHorizontalAlignment(11);
+		    labelMode.setText("Mode de payement :");
+		    gbc = new GridBagConstraints();
+		    gbc.gridx = 1;
+		    gbc.gridy = 2;
+		    gbc.anchor = GridBagConstraints.EAST;
+		    panel1.add(labelMode, gbc);
+		    
+	        confirmerModePayementButton = new JButton();
+	        confirmerModePayementButton.setText("Confirmer Mode payement");
+	        confirmerModePayementButton.addActionListener(e -> confirmerModePayementButtonClick());
+	        gbc = new GridBagConstraints();
+	        gbc.gridx = 9;
+	        gbc.gridy = 12;
 	        gbc.gridwidth = 8;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        panel1.add(confirmerAjoutButton, gbc);
+	        panel1.add(confirmerModePayementButton, gbc);
 	        
 	        
 	        annulerButton = new JButton();
-	        annulerButton.setText("Annuler Payement");
+	        annulerButton.setText("Annuler");
 	        annulerButton.addActionListener(e -> annulerButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
-	        gbc.gridy = 10;
+	        gbc.gridy = 12;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        panel1.add(annulerButton, gbc);
 	        final JPanel spacer1 = new JPanel();
@@ -121,9 +152,9 @@ public class GUI_PaymentProcessComptant extends GUI {
 	 * 
 	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer ajout"
 	 */
-		private void confirmerPayementButtonClick()
+		private void confirmerModePayementButtonClick()
 		{
-			Registre.ConfirmerPayementComptant(this);
+			Registre.ConfirmerModePayement(this, modele.getSelectedItem().toString());
 		}
 		/**
 		 * 

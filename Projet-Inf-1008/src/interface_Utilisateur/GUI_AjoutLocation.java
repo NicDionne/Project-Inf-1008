@@ -1,4 +1,10 @@
+package interface_Utilisateur;
+
 import javax.swing.*;
+
+import domaine.RegistreLocation;
+import domaine.Vehicule;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;

@@ -1,8 +1,20 @@
+package domaine;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import javax.swing.JTextField;
+
+import interface_Utilisateur.GUI;
+import interface_Utilisateur.GUI_AjoutClient;
+import interface_Utilisateur.GUI_AjoutVehicule;
+import interface_Utilisateur.GUI_PaymentMode;
+import interface_Utilisateur.GUI_PaymentProcessComptant;
+import interface_Utilisateur.GUI_PaymentProcessConfirmation;
+import interface_Utilisateur.GUI_PaymentProcessCredit;
+import interface_Utilisateur.GUI_PaymentProcessDebit;
+import interface_Utilisateur.GUI_RetirerVehicule;
 
 public class Registre {
 

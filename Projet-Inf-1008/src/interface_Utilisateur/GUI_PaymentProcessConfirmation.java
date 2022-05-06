@@ -1,32 +1,32 @@
-/**
- * @author Ramy
- */
+package interface_Utilisateur;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.List;
 
+import javax.swing.text.MaskFormatter;
 
+import domaine.Registre;
 import project.vehicule.CsvFileHelper;
 import project.vehicule.impl.VehiculeDAOImpl;
 import project.vehicule.impl.VehiculeImpl;
 
-public class GUI_RetirerVehicule extends GUI { 
+public class GUI_PaymentProcessConfirmation extends GUI { 
 	
 	final JPanel panel1 = new JPanel();
-	
-	String[] tab_contact;
-	DefaultComboBoxModel modele;
-	JComboBox liste_contact;
+
 	private JButton confirmerAjoutButton;
 	private JButton annulerButton;
 	    
 	
-	public GUI_RetirerVehicule(GUI upperMenu)
+	public GUI_PaymentProcessConfirmation(GUI upperMenu, String recuTxt)
 	{ 	
 		//Initialisation des variables 
-		 frame = new JFrame("Formulaire Supression vehicule");
+		 frame = new JFrame("Confirmation et generation recu");
 		 this.upperMenu = upperMenu;
 		 
 		 //JFrame initialisation
@@ -34,7 +34,7 @@ public class GUI_RetirerVehicule extends GUI {
 	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     frame.pack();
 	     frame.setVisible(true);
-	      panel1.setLayout(new GridBagLayout());
+	     panel1.setLayout(new GridBagLayout());
 	      
 	        GridBagConstraints gbc;
 	        gbc = new GridBagConstraints();
@@ -57,37 +57,20 @@ public class GUI_RetirerVehicule extends GUI {
 	        gbc.gridwidth = 8;
 	        gbc.anchor = GridBagConstraints.WEST;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
-	        String FILE_NAME = "src/test/db_vehicules.csv";
-	        File file = CsvFileHelper.getResource(FILE_NAME);
-	        VehiculeDAOImpl  vehiculeDao = new VehiculeDAOImpl(file);
-	        List<VehiculeImpl> listVehicule = vehiculeDao.findAllVehicules();
-			
-			tab_contact = new String[listVehicule.size()];
-			int index = 0;
-			 for(VehiculeImpl vehicule : listVehicule) {
-				 tab_contact[index] = vehicule.toString();
-				 index++;
-			 }
-			
-			modele = new DefaultComboBoxModel(tab_contact);
-			liste_contact = new JComboBox(modele);
-			panel1.add(liste_contact, gbc);
-			final JLabel labelMode = new JLabel();
-		    Font labelModeFont = new Font(null, -1, 16);
-		    if (labelModeFont != null) labelMode.setFont(labelModeFont);
-		    labelMode.setHorizontalAlignment(11);
-		    labelMode.setText("Mode de payement :");
-		    gbc = new GridBagConstraints();
-		    gbc.gridx = 1;
-		    gbc.gridy = 1;
-		    gbc.anchor = GridBagConstraints.EAST;
-		    panel1.add(labelMode, gbc);
 	        
+	        JTextArea textArea = new JTextArea(recuTxt, 10, 20);
+	        JScrollPane scrollPane = new JScrollPane(textArea);
+	        textArea.setEditable(false); 
+	        gbc = new GridBagConstraints();
+	        gbc.gridx = 1;
+	        gbc.gridy = 10;
+	        gbc.fill = GridBagConstraints.VERTICAL;
+	        panel1.add(textArea, gbc);
+	        panel1.add(scrollPane, gbc);
 	        
-
 	        confirmerAjoutButton = new JButton();
-	        confirmerAjoutButton.setText("Confirmer Suppression");
-	        confirmerAjoutButton.addActionListener(e -> confirmerSuppressionButtonClick());
+	        confirmerAjoutButton.setText("print Recu");
+	        confirmerAjoutButton.addActionListener(e -> confirmerPrintButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 9;
 	        gbc.gridy = 12;
@@ -96,8 +79,8 @@ public class GUI_RetirerVehicule extends GUI {
 	        panel1.add(confirmerAjoutButton, gbc);
 
 	        annulerButton = new JButton();
-	        annulerButton.setText("Annuler");
-	        annulerButton.addActionListener(e -> annulerButtonClick());
+	        annulerButton.setText("Envoyer Recu");
+	        annulerButton.addActionListener(e -> envoiRecuButtonClick());
 	        gbc = new GridBagConstraints();
 	        gbc.gridx = 1;
 	        gbc.gridy = 12;
@@ -138,16 +121,16 @@ public class GUI_RetirerVehicule extends GUI {
 	 * 
 	 * Event se produisant lorsqu'on presse sur le bouton : "Confirmer ajout"
 	 */
-		private void confirmerSuppressionButtonClick()
+		private void confirmerPrintButtonClick()
 		{
-			Registre.SupressionVehicule(this,modele.getSelectedItem().toString());
+			Registre.confirmerPrint(this);
 		}
 		/**
 		 * 
 		 * Event se produisant lorsqu'on presse sur le bouton : "Annuler"
 		 */
-		private void annulerButtonClick() {
-			this.toUpperMenu();
+		private void envoiRecuButtonClick() {
+			Registre.confirmerEnvoiRecu(this);
 		}
 		
 		

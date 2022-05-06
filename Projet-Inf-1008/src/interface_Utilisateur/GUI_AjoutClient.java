@@ -1,9 +1,13 @@
+package interface_Utilisateur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.NumberFormat;
 import java.text.ParseException;
 
 import javax.swing.text.MaskFormatter;
+
+import domaine.Registre;
 
 /**
  * 
