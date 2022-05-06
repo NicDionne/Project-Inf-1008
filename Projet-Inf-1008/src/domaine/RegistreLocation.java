@@ -7,7 +7,7 @@ import interface_Utilisateur.GUI;
 import interface_Utilisateur.GUI_AjoutLocation;
 
 public class RegistreLocation {
-	private static Location location;
+	private static Location locationEnCours;
 	/**
 	 * @author Nicolas Dionne
 	 * 
@@ -17,7 +17,7 @@ public class RegistreLocation {
 	public static void debuterLocation(GUI upperMenu)
 	{
 		//On crée une location
-		location = new Location();
+		locationEnCours = new Location();
 		//Interface utilisateur traitant l'ajout d'un véhicule
 		GUI_AjoutLocation gui = new GUI_AjoutLocation(upperMenu);
 	}
@@ -42,9 +42,9 @@ public class RegistreLocation {
 		}
 		Client client = GestionnaireClient.getClient(res.getID_client());
 		//setDonnees() on set les donnes
-		location.setDateDebut(res.getDateDebut());
-		location.setDateFin(res.getDateFin());
-		location.setClient(client);
+		locationEnCours.setDateDebut(res.getDateDebut());
+		locationEnCours.setDateFin(res.getDateFin());
+		locationEnCours.setClient(client);
 		//Get les vehicule dispo
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
 		ArrayList<Vehicule> vehic = new ArrayList<>();
@@ -59,8 +59,8 @@ public class RegistreLocation {
 	 * @return String : Le contrat de location sous forme String
 	 */
 	public static String SelectionVehicule(Vehicule vehicSelect) {
-		location.setVehicule(vehicSelect);
-		return location.getStringContrat();
+		locationEnCours.setVehicule(vehicSelect);
+		return locationEnCours.getStringContrat();
 	}
 	/**
 	 *Methode du RegistreLocation Pour le Cas : Ajouter Une Location
@@ -69,15 +69,15 @@ public class RegistreLocation {
 	 */
 	public static String confirmationLocation()
 	{
-		location.confirmationLocation();
+		locationEnCours.confirmationLocation();
 		//Mise a jour dans le systeme des dispo du vehicule
 		DAOCatalogueVehicule daoCatalogueVehicule = new DAOCatalogueVehicule();
-		daoCatalogueVehicule.miseAJourDispoVehicule(location.getVehicule());
+		daoCatalogueVehicule.miseAJourDispoVehicule(locationEnCours.getVehicule());
 		//Savegarde de La location
 		DAOLocation daoCatalogueLocation = new DAOLocation();
-		int noLocation = daoCatalogueLocation.save(location);
+		int noLocation = daoCatalogueLocation.save(locationEnCours);
 		//Contrat de location
-		return "Numéro de Location : "+ noLocation+ " \n" +location.getStringContrat();
+		return "Numéro de Location : "+ noLocation+ " \n" +locationEnCours.getStringContrat();
 	}
 	
 	

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.Random;
 
 public class Location {
-	  private Integer ID_client ;
 	    private Integer numLoc ;
 	    private int nbKmDebut ;
 	    private Date dateDebut ;

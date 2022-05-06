@@ -228,7 +228,7 @@ public class DAOCatalogueVehicule {
 	 * @param dateFin     : Date date de fin jusqu'à ou le véhicule doit être dispo
 	 * @return
 	 */
-	public boolean verificationDate(String dateFichier, Date dateDebut, Date dateFin) {
+	private boolean verificationDate(String dateFichier, Date dateDebut, Date dateFin) {
 		boolean toutEstGood = true;
 
 		// On prend la date de début - la date d'ajourd'hui afin de calculer combien de
